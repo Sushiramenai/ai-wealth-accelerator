@@ -4,7 +4,7 @@
 const CONFIG = {
     // PayPal Configuration
     paypal: {
-        clientId: 'YOUR_PAYPAL_CLIENT_ID_HERE', // Replace this with your actual PayPal Client ID
+        clientId: 'AbHykuH824RZ6LTfXEd2CvPgKS44eJt7YbjLaSWzBj6RpzjDgn0hStYIQqD0wORU4GvJHS0sOavspuLz', // PayPal Live Client ID
         currency: 'USD',
         productPrice: 497
     },
