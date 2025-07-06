@@ -1424,7 +1424,7 @@
                     onApprove: function(data, actions) {
                         return actions.order.capture().then(function(details) {
                             // Redirect to course access page
-                            window.location.href = 'course-access.html?order=' + details.id;
+                            window.location.href = 'course-access-enhanced.html?order=' + details.id;
                         });
                     }
                 }).render('#' + containerId);

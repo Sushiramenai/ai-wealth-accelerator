@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wealth Academy - Welcome to Your Future</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ff88;
+            --secondary-color: #7c3aed;
+            --accent-color: #ff00ff;
+            --danger-color: #ff0044;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .welcome-section h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .welcome-section p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .success-message h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Main Portal Card */
+        .portal-card {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 255, 136, 0.2));
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+            border-radius: 30px;
+            z-index: -1;
+            animation: gradient-border 3s ease infinite;
+        }
+
+        @keyframes gradient-border {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .portal-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .portal-card p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+        }
+
+        .enter-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .enter-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Quick Access Grid */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .access-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .access-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .access-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .access-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .access-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .access-card li:last-child {
+            border-bottom: none;
+        }
+
+        .access-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .access-card a:hover {
+            transform: translateX(5px);
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .resources-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .resource-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .resource-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Support Section */
+        .support-section {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .support-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .support-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .support-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .support-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Error State */
+        .error-container {
+            background: rgba(255, 0, 68, 0.1);
+            border: 1px solid var(--danger-color);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 100px auto;
+            max-width: 600px;
+            display: none;
+        }
+
+        .error-container h2 {
+            color: var(--danger-color);
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .portal-card {
+                padding: 40px 20px;
+            }
+
+            .enter-button {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+            }
+
+            .support-options {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">AI Wealth Academy</div>
+            <div class="user-info">
+                <span>Welcome, Future Millionaire!</span>
+                <span class="loading" id="loading"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container" id="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h1>Welcome to Your AI Wealth Journey! 🚀</h1>
+            <p>You've just unlocked the exact system that's helping 2,847 students build $10K+/month businesses with AI.</p>
+        </section>
+
+        <!-- Success Message -->
+        <div class="success-message">
+            <h2>✅ Purchase Successful!</h2>
+            <p>Your access has been activated. Let's start building your empire!</p>
+        </div>
+
+        <!-- Main Portal Card -->
+        <div class="portal-card">
+            <h2>🎓 Enter AI Wealth Academy</h2>
+            <p>Access all 7 modules, track your progress, earn achievements, and get your official AI Wealth Expert Certificate!</p>
+            <a href="course-portal.html" class="enter-button">
+                Enter Academy Portal →
+            </a>
+        </div>
+
+        <!-- Quick Access Grid -->
+        <div class="quick-access">
+            <div class="access-card">
+                <h3>📚 Quick Start</h3>
+                <ul>
+                    <li><a href="course-portal.html">Student Dashboard <span>→</span></a></li>
+                    <li><a href="module-1.html">Start Module 1 Now <span>→</span></a></li>
+                    <li><a href="course-structure.md">View Full Curriculum <span>→</span></a></li>
+                    <li><a href="#">Download Mobile App <span>📱</span></a></li>
+                </ul>
+            </div>
+
+            <div class="access-card">
+                <h3>🎯 Your Path to Success</h3>
+                <ul>
+                    <li>✅ Complete 49 video lessons</li>
+                    <li>✅ Submit module worksheets</li>
+                    <li>✅ Implement as you learn</li>
+                    <li>✅ Earn your certificate</li>
+                    <li>✅ Join alumni network</li>
+                </ul>
+            </div>
+
+            <div class="access-card">
+                <h3>⏰ Recommended Schedule</h3>
+                <ul>
+                    <li>Week 1: Modules 1-2 (Foundation)</li>
+                    <li>Week 2: Modules 3-4 (Service & Clients)</li>
+                    <li>Week 3: Modules 5-6 (Scale & Grow)</li>
+                    <li>Week 4: Module 7 (Graduate!)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <section class="resources-section">
+            <h2>🎁 Your Success Toolkit</h2>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <div class="resource-icon">📝</div>
+                    <h4>Templates & Scripts</h4>
+                    <p>50+ done-for-you templates</p>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🤖</div>
+                    <h4>AI Prompt Library</h4>
+                    <p>100+ money-making prompts</p>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">📊</div>
+                    <h4>Tracking Tools</h4>
+                    <p>Revenue & client trackers</p>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">👥</div>
+                    <h4>Community Access</h4>
+                    <p>Connect with 2,847+ students</p>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🎥</div>
+                    <h4>Live Q&A Sessions</h4>
+                    <p>Weekly office hours</p>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🏆</div>
+                    <h4>Success Stories</h4>
+                    <p>Learn from graduates</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section class="support-section">
+            <h2>We're Here to Help You Succeed</h2>
+            <p>Got questions? Need guidance? We've got your back!</p>
+            <div class="support-options">
+                <div class="support-option">
+                    <div class="support-icon">💬</div>
+                    <span>Live Chat</span>
+                    <small>Mon-Fri 9am-6pm EST</small>
+                </div>
+                <div class="support-option">
+                    <div class="support-icon">📧</div>
+                    <span>Email Support</span>
+                    <small>success@aiwealthacademy.com</small>
+                </div>
+                <div class="support-option">
+                    <div class="support-icon">📱</div>
+                    <span>Student Hotline</span>
+                    <small>1-800-AI-WEALTH</small>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Error Container -->
+    <div class="error-container" id="error-container">
+        <h2>⚠️ Access Denied</h2>
+        <p>Please complete your purchase to access the course.</p>
+        <p>Redirecting to homepage in <span id="countdown">3</span> seconds...</p>
+    </div>
+
+    <script>
+        // Check access
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order');
+        const savedOrder = localStorage.getItem('aiWealthOrder');
+
+        if (!orderId && !savedOrder) {
+            // No access - show error
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('error-container').style.display = 'block';
+            
+            // Countdown redirect
+            let count = 3;
+            const countdownEl = document.getElementById('countdown');
+            const countdown = setInterval(() => {
+                count--;
+                countdownEl.textContent = count;
+                if (count === 0) {
+                    clearInterval(countdown);
+                    window.location.href = 'index.html';
+                }
+            }, 1000);
+        } else {
+            // Valid access
+            if (orderId) {
+                localStorage.setItem('aiWealthOrder', orderId);
+                localStorage.setItem('purchaseDate', new Date().toISOString());
+            }
+            
+            // Remove loading spinner
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+            }, 1000);
+            
+            // Initialize course progress if first time
+            if (!localStorage.getItem('courseProgress')) {
+                const initialProgress = {
+                    completedLessons: [],
+                    completedModules: [],
+                    totalTime: 0,
+                    achievements: [],
+                    currentLevel: 1,
+                    startDate: new Date().toISOString()
+                };
+                localStorage.setItem('courseProgress', JSON.stringify(initialProgress));
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
