@@ -783,7 +783,17 @@
         function openModule(moduleId) {
             // Save to session storage for the module page
             sessionStorage.setItem('currentModule', moduleId);
-            window.location.href = `module-${moduleId}.html`;
+            // Navigate to module content
+            if (moduleId === 1) {
+                window.location.href = 'module-1.html';
+            } else if (moduleId === 2) {
+                window.location.href = 'module-2-content.html';
+            } else if (moduleId === 3) {
+                window.location.href = 'module-3-content.html';
+            } else {
+                // For modules 4-7, show coming soon message
+                alert('Module ' + moduleId + ' content is being added this week! Check back soon.');
+            }
         }
 
         // Show notification
