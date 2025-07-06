@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wealth Accelerator - Stop Building Someone Else's Dream</title>
+    <meta name="description" content="Your job is training its AI replacement. Learn to profit from AI before it profits from replacing you. 2,847 people already escaped the 9-5.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ff88;
+            --secondary-color: #7c3aed;
+            --accent-color: #ff00ff;
+            --danger-color: #ff0044;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .lang-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Job Replacement Counter */
+        .replacement-counter {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: rgba(255, 0, 68, 0.1);
+            border: 1px solid var(--danger-color);
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+        }
+
+        .replacement-counter p:first-child {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+            color: var(--danger-color);
+        }
+
+        .replacement-counter p:last-child {
+            font-size: 1.8rem;
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+
+        /* Freedom Counter */
+        .freedom-counter {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary-color);
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+        }
+
+        .freedom-counter p:first-child {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .freedom-counter p:last-child {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-up 10s infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1.5);
+            }
+        }
+
+        /* Floating 3D Elements */
+        .floating-3d {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            animation: rotate3d 20s infinite linear;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary-color);
+            background: rgba(0, 255, 136, 0.1);
+            opacity: 0.3;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 1200px;
+        }
+
+        .warning-badge {
+            display: inline-block;
+            background: rgba(255, 0, 68, 0.1);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: pulse-danger 2s infinite;
+        }
+
+        @keyframes pulse-danger {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .title-line1 {
+            color: var(--danger-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .title-line2 {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Escape Plan Button */
+        .escape-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--bg-dark);
+            background: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .escape-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .escape-btn:hover {
+            color: var(--text-primary);
+            box-shadow: 0 0 40px var(--primary-color),
+                        inset 0 0 20px rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .escape-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .escape-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .comparison-column {
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .old-way {
+            background: rgba(255, 0, 68, 0.05);
+            border: 1px solid rgba(255, 0, 68, 0.3);
+        }
+
+        .new-way {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .comparison-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .old-way h3 {
+            color: var(--danger-color);
+        }
+
+        .new-way h3 {
+            color: var(--primary-color);
+        }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .old-way li::before {
+            content: '❌';
+            position: absolute;
+            left: 0;
+        }
+
+        .new-way li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .countdown-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .countdown-timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-primary);
+        }
+
+        /* AI Takeover Timeline */
+        .timeline-section {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--danger-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--danger-color), var(--primary-color));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-dark);
+            padding: 10px 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        /* Social Proof */
+        .proof-section {
+            padding: 100px 20px;
+            background: rgba(124, 58, 237, 0.05);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .proof-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .proof-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .proof-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .proof-age {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .proof-income {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .proof-story {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* The Choice Section */
+        .choice-section {
+            padding: 100px 20px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .choice-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .choice-card {
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .choice-stay {
+            background: rgba(255, 0, 68, 0.05);
+            border: 1px solid rgba(255, 0, 68, 0.3);
+        }
+
+        .choice-escape {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .choice-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .choice-stay h3 {
+            color: var(--danger-color);
+        }
+
+        .choice-escape h3 {
+            color: var(--primary-color);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 150px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(0, 255, 136, 0.1));
+        }
+
+        .final-cta h2 {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-box {
+            margin: 40px 0;
+        }
+
+        .original-price {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            opacity: 0.5;
+            margin-bottom: 10px;
+        }
+
+        .current-price {
+            font-size: 3rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Social Proof Popup */
+        .social-proof-popup {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 20px 30px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            animation: slideInLeft 0.5s ease;
+            z-index: 200;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cursor, .cursor-follower {
+                display: none;
+            }
+            
+            body {
+                cursor: auto;
+            }
+            
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+
+            .comparison-grid,
+            .choice-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .replacement-counter,
+            .freedom-counter {
+                position: static;
+                margin: 20px;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Job Replacement Counter -->
+    <div class="replacement-counter">
+        <p data-i18n="jobs-replaced">Jobs Replaced by AI Today</p>
+        <p><span id="jobs-replaced-count">12,847</span></p>
+    </div>
+
+    <!-- Freedom Counter -->
+    <div class="freedom-counter">
+        <p data-i18n="people-escaped">People Who Escaped Today</p>
+        <p><span id="freedom-count">247</span></p>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-section">
+        <div class="countdown-content">
+            <span class="countdown-label" data-i18n="limited-offer">YOUR ESCAPE WINDOW CLOSES IN</span>
+            <span class="countdown-timer" id="countdown">23:59:47</span>
+        </div>
+    </div>
+
+    <!-- Floating 3D Elements -->
+    <div class="floating-3d" style="top: 20%; left: 10%;">
+        <div class="cube-face" style="transform: translateZ(50px);"></div>
+        <div class="cube-face" style="transform: rotateY(90deg) translateZ(50px);"></div>
+        <div class="cube-face" style="transform: rotateY(180deg) translateZ(50px);"></div>
+        <div class="cube-face" style="transform: rotateY(270deg) translateZ(50px);"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="warning-badge" data-i18n="warning">⚠️ WARNING: Your Job Has An Expiration Date</div>
+            
+            <h1 class="hero-title">
+                <span class="title-line1" data-i18n="hero-line1">Stop Building Someone Else's Dream</span>
+                <span class="title-line2" data-i18n="hero-line2">Start Commanding AI Before It Commands You</span>
+            </h1>
+            
+            <p class="hero-subtitle" data-i18n="hero-subtitle">
+                Every day you trade hours for wages, you're training your AI replacement. 
+                Time to flip the script.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">2,847</div>
+                    <div class="stat-label" data-i18n="stat-escaped">Escaped the 9-5</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label" data-i18n="stat-age">Average Age</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$8.4K</div>
+                    <div class="stat-label" data-i18n="stat-income">Avg Monthly Income</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3hrs</div>
+                    <div class="stat-label" data-i18n="stat-workday">Daily Work Time</div>
+                </div>
+            </div>
+
+            <!-- PayPal Button Container -->
+            <div id="paypal-button-container"></div>
+            
+            <p style="margin-top: 20px; opacity: 0.8;" data-i18n="guarantee">
+                🔒 30-Day "Quit Your Job" Guarantee • 📱 Work From Anywhere • 🎯 No Boss, No Limits
+            </p>
+        </div>
+    </section>
+
+    <!-- The Comparison -->
+    <section class="comparison-section">
+        <h2 class="comparison-title" data-i18n="comparison-title">The Choice Is Yours</h2>
+        
+        <div class="comparison-grid">
+            <div class="comparison-column old-way">
+                <h3 data-i18n="old-way">Keep Trading Time for Money</h3>
+                <ul class="comparison-list">
+                    <li data-i18n="old1">Wake up to alarms for 40+ years</li>
+                    <li data-i18n="old2">Ask permission for vacation days</li>
+                    <li data-i18n="old3">Watch inflation eat your raises</li>
+                    <li data-i18n="old4">Train the AI that replaces you</li>
+                    <li data-i18n="old5">Retire broke at 65 (if lucky)</li>
+                    <li data-i18n="old6">Die with regrets</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-column new-way">
+                <h3 data-i18n="new-way">Command Your Own Income</h3>
+                <ul class="comparison-list">
+                    <li data-i18n="new1">Wake up when you want</li>
+                    <li data-i18n="new2">Work from Bali, NYC, or bed</li>
+                    <li data-i18n="new3">Scale income without limits</li>
+                    <li data-i18n="new4">Use AI as your employee</li>
+                    <li data-i18n="new5">Financial freedom by 30</li>
+                    <li data-i18n="new6">Live life on your terms</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="#pricing" class="escape-btn">
+                <span data-i18n="escape-now">Start My Escape Plan →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- AI Takeover Timeline -->
+    <section class="timeline-section">
+        <h2 class="timeline-title" data-i18n="timeline-title">The Clock Is Ticking</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2024: The Warning Signs</h3>
+                    <p>Customer service, data entry, basic coding - all automated. 
+                    "Entry level" jobs disappearing. Your boss calls it "efficiency."</p>
+                </div>
+                <div class="timeline-date">NOW</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2025: The Acceleration</h3>
+                    <p>Middle management, accounting, legal research - AI doing it better, 
+                    faster, cheaper. Your LinkedIn feed full of "looking for opportunities."</p>
+                </div>
+                <div class="timeline-date">12 MONTHS</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2026: The Great Replacement</h3>
+                    <p>50% of white-collar jobs gone. Those who command AI thrive. 
+                    Those who didn't... compete for the scraps.</p>
+                </div>
+                <div class="timeline-date">24 MONTHS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="proof-section">
+        <h2 style="text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary-color);" 
+            data-i18n="proof-title">They Escaped. So Can You.</h2>
+        
+        <div class="proof-grid">
+            <div class="proof-card">
+                <div class="proof-header">
+                    <strong>Sarah M.</strong>
+                    <span class="proof-age">Age 23</span>
+                </div>
+                <div class="proof-income">$8,420/month</div>
+                <p class="proof-story" data-i18n="proof1">
+                    "Was making $18/hour serving coffee to executives. Now I make more 
+                    in a day than they pay their assistants in a week. Using their 
+                    same AI tools. The irony is delicious."
+                </p>
+            </div>
+            
+            <div class="proof-card">
+                <div class="proof-header">
+                    <strong>Marcus K.</strong>
+                    <span class="proof-age">Age 26</span>
+                </div>
+                <div class="proof-income">$12,300/month</div>
+                <p class="proof-story" data-i18n="proof2">
+                    "5 years of college. $80K in debt. Making $45K at a 'good job.' 
+                    Quit after 2 months with AI Wealth. Now my old boss asks ME for advice."
+                </p>
+            </div>
+            
+            <div class="proof-card">
+                <div class="proof-header">
+                    <strong>Jennifer L.</strong>
+                    <span class="proof-age">Age 22</span>
+                </div>
+                <div class="proof-income">$6,200/month</div>
+                <p class="proof-story" data-i18n="proof3">
+                    "Parents said 'get a stable job.' I showed them my bank account. 
+                    Now they're asking me to teach them. GenZ isn't lazy - we just 
+                    refuse to be slaves."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Choice -->
+    <section class="choice-section">
+        <h2 class="choice-title" data-i18n="choice-title">Two Paths. One Choice. Your Future.</h2>
+        
+        <div class="choice-grid">
+            <div class="choice-card choice-stay">
+                <h3 data-i18n="path1">Path 1: Stay Comfortable</h3>
+                <ul style="text-align: left; list-style: none;">
+                    <li>✓ Keep your "stable" job</li>
+                    <li>✓ Hope AI doesn't replace you</li>
+                    <li>✓ Trade time for money until 65</li>
+                    <li>✓ Watch others live your dreams</li>
+                    <li>✓ Wonder "what if?"</li>
+                </ul>
+            </div>
+            
+            <div class="choice-card choice-escape">
+                <h3 data-i18n="path2">Path 2: Take Control</h3>
+                <ul style="text-align: left; list-style: none;">
+                    <li>✓ Master AI in 30 days</li>
+                    <li>✓ Build your own income</li>
+                    <li>✓ Work 3 hours, earn 8 hours pay</li>
+                    <li>✓ Answer to nobody</li>
+                    <li>✓ Live life on your terms</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <h2 class="faq-title" data-i18n="faq-title">Real Questions. Real Answers.</h2>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq1-q">"But I don't know anything about AI..."</h3>
+            <p data-i18n="faq1-a">
+                Perfect. Neither did our top earners 60 days ago. You grew up with 
+                smartphones - AI is easier. Your boss struggles with email. Who has 
+                the real advantage?
+            </p>
+        </div>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq2-q">"What if I fail?"</h3>
+            <p data-i18n="faq2-a">
+                What if you don't try? In 5 years, you'll either command AI or be 
+                commanded by it. Failure is staying where you are, watching opportunities 
+                pass while building someone else's empire.
+            </p>
+        </div>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq3-q">"Is this actually real?"</h3>
+            <p data-i18n="faq3-a">
+                Ask the 2,847 people who quit their jobs last month. Ask Sarah making 
+                $8K/month at 23. Ask yourself why your company is suddenly so interested 
+                in "AI integration." The future is here. Pick your side.
+            </p>
+        </div>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq4-q">"My parents say I need a stable job..."</h3>
+            <p data-i18n="faq4-a">
+                Your parents' advice was perfect... for 1990. They worked one job for 
+                30 years. You'll have 30 jobs in one year if you follow their path. 
+                Love them, but don't let their fears limit your future.
+            </p>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="pricing">
+        <h2 data-i18n="final-title">Your Escape Starts Now</h2>
+        <p style="font-size: 1.5rem; margin-bottom: 40px; opacity: 0.9;" data-i18n="final-subtitle">
+            Or keep making someone else rich. Your choice.
+        </p>
+        
+        <div class="price-box">
+            <p class="original-price" data-i18n="original-price">Regular Price: $997</p>
+            <p class="current-price" data-i18n="today-price">Today Only: $497</p>
+        </div>
+        
+        <!-- PayPal Button Container -->
+        <div id="paypal-button-container-2"></div>
+        
+        <p style="margin-top: 30px; opacity: 0.8;">
+            <strong data-i18n="guarantee-title">The "Quit Your Job" Guarantee:</strong><br>
+            <span data-i18n="guarantee-text">
+                If you don't make your investment back in 30 days, we'll refund 
+                every penny. That's how confident we are. Your boss can't offer that.
+            </span>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #000; padding: 80px 20px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <h3 style="font-size: 2rem; margin-bottom: 40px; color: var(--primary-color);" 
+            data-i18n="footer-cta">Stop Building Their Dream. Start Living Yours.</h3>
+        
+        <!-- PayPal Button Container -->
+        <div id="paypal-button-container-3" style="margin-bottom: 50px;"></div>
+        
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">🇺🇸</button>
+            <button class="lang-btn" data-lang="ja">🇯🇵</button>
+            <button class="lang-btn" data-lang="ko">🇰🇷</button>
+            <button class="lang-btn" data-lang="zh-tw">🇹🇼</button>
+            <button class="lang-btn" data-lang="es-mx">🇲🇽</button>
+            <button class="lang-btn" data-lang="tl">🇵🇭</button>
+        </div>
+        
+        <p style="margin-top: 40px; color: var(--text-secondary); font-size: 0.9rem;">
+            © 2025 AI Wealth Accelerator. Time to choose your side.<br>
+            <span style="margin-top: 10px; display: block;">
+                <a href="blog.html" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Blog</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Terms</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Privacy</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Contact</a>
+            </span>
+        </p>
+    </footer>
+
+    <!-- Social Proof Popup -->
+    <div class="social-proof-popup" id="social-proof">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 50%;"></div>
+            <div>
+                <strong id="proof-name">Mike from Austin</strong><br>
+                <span style="color: var(--text-secondary);" data-i18n="just-escaped">just quit their job! 🎉</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR-PAYPAL-CLIENT-ID&currency=USD"></script>
+
+    <script>
+        // Multi-language translations
+        const translations = {
+            en: {
+                'jobs-replaced': 'Jobs Replaced by AI Today',
+                'people-escaped': 'People Who Escaped Today',
+                'limited-offer': 'YOUR ESCAPE WINDOW CLOSES IN',
+                'warning': '⚠️ WARNING: Your Job Has An Expiration Date',
+                'hero-line1': 'Stop Building Someone Else\'s Dream',
+                'hero-line2': 'Start Commanding AI Before It Commands You',
+                'hero-subtitle': 'Every day you trade hours for wages, you\'re training your AI replacement. Time to flip the script.',
+                'stat-escaped': 'Escaped the 9-5',
+                'stat-age': 'Average Age',
+                'stat-income': 'Avg Monthly Income',
+                'stat-workday': 'Daily Work Time',
+                'guarantee': '🔒 30-Day "Quit Your Job" Guarantee • 📱 Work From Anywhere • 🎯 No Boss, No Limits',
+                'comparison-title': 'The Choice Is Yours',
+                'old-way': 'Keep Trading Time for Money',
+                'old1': 'Wake up to alarms for 40+ years',
+                'old2': 'Ask permission for vacation days',
+                'old3': 'Watch inflation eat your raises',
+                'old4': 'Train the AI that replaces you',
+                'old5': 'Retire broke at 65 (if lucky)',
+                'old6': 'Die with regrets',
+                'new-way': 'Command Your Own Income',
+                'new1': 'Wake up when you want',
+                'new2': 'Work from Bali, NYC, or bed',
+                'new3': 'Scale income without limits',
+                'new4': 'Use AI as your employee',
+                'new5': 'Financial freedom by 30',
+                'new6': 'Live life on your terms',
+                'escape-now': 'Start My Escape Plan →',
+                'timeline-title': 'The Clock Is Ticking',
+                'proof-title': 'They Escaped. So Can You.',
+                'proof1': '"Was making $18/hour serving coffee to executives. Now I make more in a day than they pay their assistants in a week. Using their same AI tools. The irony is delicious."',
+                'proof2': '"5 years of college. $80K in debt. Making $45K at a \'good job.\' Quit after 2 months with AI Wealth. Now my old boss asks ME for advice."',
+                'proof3': '"Parents said \'get a stable job.\' I showed them my bank account. Now they\'re asking me to teach them. GenZ isn\'t lazy - we just refuse to be slaves."',
+                'choice-title': 'Two Paths. One Choice. Your Future.',
+                'path1': 'Path 1: Stay Comfortable',
+                'path2': 'Path 2: Take Control',
+                'faq-title': 'Real Questions. Real Answers.',
+                'faq1-q': '"But I don\'t know anything about AI..."',
+                'faq1-a': 'Perfect. Neither did our top earners 60 days ago. You grew up with smartphones - AI is easier. Your boss struggles with email. Who has the real advantage?',
+                'faq2-q': '"What if I fail?"',
+                'faq2-a': 'What if you don\'t try? In 5 years, you\'ll either command AI or be commanded by it. Failure is staying where you are, watching opportunities pass while building someone else\'s empire.',
+                'faq3-q': '"Is this actually real?"',
+                'faq3-a': 'Ask the 2,847 people who quit their jobs last month. Ask Sarah making $8K/month at 23. Ask yourself why your company is suddenly so interested in "AI integration." The future is here. Pick your side.',
+                'faq4-q': '"My parents say I need a stable job..."',
+                'faq4-a': 'Your parents\' advice was perfect... for 1990. They worked one job for 30 years. You\'ll have 30 jobs in one year if you follow their path. Love them, but don\'t let their fears limit your future.',
+                'final-title': 'Your Escape Starts Now',
+                'final-subtitle': 'Or keep making someone else rich. Your choice.',
+                'original-price': 'Regular Price: $997',
+                'today-price': 'Today Only: $497',
+                'guarantee-title': 'The "Quit Your Job" Guarantee:',
+                'guarantee-text': 'If you don\'t make your investment back in 30 days, we\'ll refund every penny. That\'s how confident we are. Your boss can\'t offer that.',
+                'footer-cta': 'Stop Building Their Dream. Start Living Yours.',
+                'just-escaped': 'just quit their job! 🎉'
+            },
+            ja: {
+                'jobs-replaced': '本日AIに置き換えられた仕事',
+                'people-escaped': '本日脱出した人数',
+                'limited-offer': '脱出の窓が閉まるまで',
+                'warning': '⚠️ 警告：あなたの仕事には有効期限があります',
+                'hero-line1': '他人の夢を築くのをやめよう',
+                'hero-line2': 'AIに支配される前に、AIを支配せよ',
+                'hero-subtitle': '毎日時間を賃金と交換するたび、あなたはAIの代替品を訓練している。脚本を書き換える時だ。',
+                'stat-escaped': '9-5から脱出',
+                'stat-age': '平均年齢',
+                'stat-income': '平均月収',
+                'stat-workday': '1日の作業時間',
+                'guarantee': '🔒 30日間「仕事を辞める」保証 • 📱 どこからでも仕事 • 🎯 上司なし、制限なし',
+                'comparison-title': '選択はあなた次第',
+                'old-way': '時間をお金と交換し続ける',
+                'old1': '40年以上目覚ましで起きる',
+                'old2': '休暇の許可を求める',
+                'old3': 'インフレが昇給を食い尽くすのを見る',
+                'old4': 'あなたを置き換えるAIを訓練する',
+                'old5': '65歳で貧乏に引退（運が良ければ）',
+                'old6': '後悔とともに死ぬ',
+                'new-way': '自分の収入をコントロール',
+                'new1': '好きな時に起きる',
+                'new2': 'バリ、NYC、またはベッドから仕事',
+                'new3': '収入を無制限に拡大',
+                'new4': 'AIを従業員として使用',
+                'new5': '30歳までに経済的自由',
+                'new6': '自分の条件で人生を生きる',
+                'escape-now': '脱出計画を開始 →',
+                'timeline-title': '時計は刻々と進んでいる',
+                'proof-title': '彼らは脱出した。あなたもできる。',
+                'proof1': '「幹部にコーヒーを出して時給18ドルだった。今は彼らがアシスタントに週給で払う額を1日で稼ぐ。同じAIツールを使って。皮肉が美味しい。」',
+                'proof2': '「大学5年。借金8万ドル。「良い仕事」で年収4万5千ドル。AI Wealthで2ヶ月後に辞めた。今は元上司が私にアドバイスを求めてくる。」',
+                'proof3': '「両親は「安定した仕事に就け」と言った。銀行口座を見せたら、今は教えてくれと頼んでくる。Z世代は怠け者じゃない - 奴隷になることを拒否しているだけ。」',
+                'just-escaped': 'が仕事を辞めました！ 🎉'
+            },
+            ko: {
+                'jobs-replaced': '오늘 AI로 대체된 일자리',
+                'people-escaped': '오늘 탈출한 사람들',
+                'limited-offer': '탈출 기회가 닫히기까지',
+                'warning': '⚠️ 경고: 당신의 직업에는 유효기간이 있습니다',
+                'hero-line1': '남의 꿈 만들기를 멈추세요',
+                'hero-line2': 'AI가 당신을 지배하기 전에 AI를 지배하세요',
+                'hero-subtitle': '시간을 임금과 교환할 때마다 당신은 AI 대체품을 훈련시키고 있습니다. 판을 뒤집을 때입니다.',
+                'stat-escaped': '9-5 탈출',
+                'stat-age': '평균 연령',
+                'stat-income': '평균 월수입',
+                'stat-workday': '일일 근무 시간',
+                'just-escaped': '님이 퇴사했습니다! 🎉'
+            },
+            'zh-tw': {
+                'jobs-replaced': '今日被AI取代的工作',
+                'people-escaped': '今日逃脫的人數',
+                'limited-offer': '你的逃脫窗口關閉倒數',
+                'warning': '⚠️ 警告：你的工作有保質期',
+                'hero-line1': '停止建造別人的夢想',
+                'hero-line2': '在AI指揮你之前先指揮AI',
+                'hero-subtitle': '每天用時間換工資，你都在訓練你的AI替代品。是時候翻轉劇本了。',
+                'stat-escaped': '逃離朝九晚五',
+                'stat-age': '平均年齡',
+                'stat-income': '平均月收入',
+                'stat-workday': '每日工作時間',
+                'just-escaped': '剛剛辭職了！ 🎉'
+            },
+            'es-mx': {
+                'jobs-replaced': 'Trabajos Reemplazados por IA Hoy',
+                'people-escaped': 'Personas que Escaparon Hoy',
+                'limited-offer': 'TU VENTANA DE ESCAPE CIERRA EN',
+                'warning': '⚠️ ADVERTENCIA: Tu Trabajo Tiene Fecha de Caducidad',
+                'hero-line1': 'Deja de Construir el Sueño de Otro',
+                'hero-line2': 'Comanda la IA Antes de que Te Comande',
+                'hero-subtitle': 'Cada día que cambias horas por salario, estás entrenando a tu reemplazo de IA. Es hora de cambiar el guión.',
+                'stat-escaped': 'Escaparon del 9-5',
+                'stat-age': 'Edad Promedio',
+                'stat-income': 'Ingreso Mensual Promedio',
+                'stat-workday': 'Tiempo de Trabajo Diario',
+                'just-escaped': '¡acaba de renunciar! 🎉'
+            },
+            tl: {
+                'jobs-replaced': 'Trabahong Napalitan ng AI Ngayon',
+                'people-escaped': 'Taong Nakatakas Ngayon',
+                'limited-offer': 'MAGSASARA NA ANG ESCAPE WINDOW MO SA',
+                'warning': '⚠️ BABALA: May Expiration Date ang Trabaho Mo',
+                'hero-line1': 'Tigilan ang Pagbuo ng Pangarap ng Iba',
+                'hero-line2': 'Kontrolin ang AI Bago Ka Nito Kontrolin',
+                'hero-subtitle': 'Bawat araw na ipinagpapalit mo ang oras sa sahod, tinuturuan mo ang AI na pumalit sayo. Oras na para baguhin ang takbo.',
+                'stat-escaped': 'Nakatakas sa 9-5',
+                'stat-age': 'Average na Edad',
+                'stat-income': 'Average Buwanang Kita',
+                'stat-workday': 'Oras ng Trabaho Araw-araw',
+                'just-escaped': 'kaka-resign lang! 🎉'
+            }
+        };
+
+        // Currency configurations
+        const currencyConfig = {
+            en: { symbol: '$', multiplier: 1 },
+            ja: { symbol: '¥', multiplier: 150 },
+            ko: { symbol: '₩', multiplier: 1300 },
+            'zh-tw': { symbol: 'NT$', multiplier: 31 },
+            'es-mx': { symbol: '$', multiplier: 17 },
+            tl: { symbol: '₱', multiplier: 56 }
+        };
+
+        // PayPal price configurations
+        const paypalPrices = {
+            en: 497,
+            ja: 74550,
+            ko: 646100,
+            'zh-tw': 15407,
+            'es-mx': 8449,
+            tl: 27832
+        };
+
+        // Names for social proof
+        const proofNames = {
+            en: ['Mike from Austin', 'Sarah from NYC', 'James from LA', 'Emma from Chicago', 'David from Miami', 'Lisa from Seattle'],
+            ja: ['東京の田中さん', '大阪の鈴木さん', '京都の佐藤さん', '福岡の高橋さん', '名古屋の山田さん', '札幌の伊藤さん'],
+            ko: ['서울의 김민수', '부산의 이지은', '대구의 박준호', '인천의 최서연', '광주의 정민호', '대전의 강수진'],
+            'zh-tw': ['台北的陳先生', '高雄的林小姐', '台中的王先生', '新竹的張小姐', '桃園的李先生', '台南的黃小姐'],
+            'es-mx': ['Miguel de CDMX', 'María de Guadalajara', 'Carlos de Monterrey', 'Ana de Puebla', 'Luis de Tijuana', 'Sofia de Cancún'],
+            tl: ['Juan from Manila', 'Maria from Cebu', 'Jose from Davao', 'Ana from QC', 'Pedro from Makati', 'Rosa from Pasig']
+        };
+
+        let currentLang = 'en';
+
+        // Custom cursor
+        if (window.matchMedia('(min-width: 768px)').matches) {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX - 10 + 'px';
+                    cursorFollower.style.top = e.clientY - 10 + 'px';
+                }, 100);
+            });
+        }
+
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Job Replacement Counter
+        let jobsReplaced = 12847;
+        function updateJobsReplaced() {
+            jobsReplaced += Math.floor(Math.random() * 5) + 1;
+            document.getElementById('jobs-replaced-count').textContent = jobsReplaced.toLocaleString();
+        }
+        setInterval(updateJobsReplaced, 5000);
+
+        // Freedom Counter
+        let freedomCount = 247;
+        function updateFreedomCount() {
+            if (Math.random() > 0.6) {
+                freedomCount += 1;
+                document.getElementById('freedom-count').textContent = freedomCount.toLocaleString();
+                
+                // Trigger social proof popup
+                showSocialProof();
+            }
+        }
+        setInterval(updateFreedomCount, 30000);
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const midnight = new Date();
+            midnight.setHours(24, 0, 0, 0);
+            
+            const diff = midnight - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('countdown').textContent = timeString;
+        }
+
+        // Social Proof Notifications
+        function showSocialProof() {
+            const popup = document.getElementById('social-proof');
+            const names = proofNames[currentLang];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            
+            document.getElementById('proof-name').textContent = randomName;
+            popup.style.display = 'flex';
+            
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 5000);
+        }
+
+        // Language switching
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentLang = this.dataset.lang;
+                updateLanguage();
+                updatePrices();
+            });
+        });
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
+        function updatePrices() {
+            const config = currencyConfig[currentLang];
+            const symbol = config.symbol;
+            const multiplier = config.multiplier;
+            
+            // Update stat income
+            const statIncome = document.querySelector('.stat-number');
+            if (statIncome && statIncome.parentElement.querySelector('.stat-label').getAttribute('data-i18n') === 'stat-income') {
+                const baseAmount = 8400;
+                statIncome.textContent = symbol + (baseAmount * multiplier).toLocaleString();
+            }
+        }
+
+        // PayPal Integration
+        function initPayPal() {
+            if (typeof paypal === 'undefined') {
+                console.log('PayPal SDK not loaded. Replace YOUR-PAYPAL-CLIENT-ID with actual client ID.');
+                return;
+            }
+
+            // Create PayPal buttons for all containers
+            const buttonContainers = [
+                'paypal-button-container',
+                'paypal-button-container-2',
+                'paypal-button-container-3'
+            ];
+
+            buttonContainers.forEach(containerId => {
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: paypalPrices[currentLang].toString()
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            // Redirect to course access page
+                            window.location.href = 'course-access.html?order=' + details.id;
+                        });
+                    }
+                }).render('#' + containerId);
+            });
+        }
+
+        // Initialize
+        createParticles();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Show social proof every 20-40 seconds
+        setInterval(() => {
+            if (Math.random() > 0.5) {
+                showSocialProof();
+            }
+        }, 20000 + Math.random() * 20000);
+        
+        // First notification after 5 seconds
+        setTimeout(showSocialProof, 5000);
+
+        // Initialize PayPal when ready
+        window.addEventListener('load', () => {
+            setTimeout(initPayPal, 1000);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

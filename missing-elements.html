@@ -1,0 +1,141 @@
+<!-- ADD THESE ELEMENTS TO YOUR SITE -->
+
+<!-- 1. PRICING SECTION (Add before products) -->
+<section style="padding: 100px 20px; text-align: center; background: rgba(124, 58, 237, 0.1);">
+    <h2 style="font-size: 3rem; margin-bottom: 20px;">Limited Time Offer</h2>
+    <p style="font-size: 1.5rem; text-decoration: line-through; opacity: 0.5;">Regular Price: $997</p>
+    <p style="font-size: 4rem; color: var(--primary-color); font-weight: bold;">Today Only: $497</p>
+    <p style="margin-top: 20px;">⏰ Price increases when timer hits zero</p>
+</section>
+
+<!-- 2. TRUST BADGES (Add after testimonials) -->
+<section style="padding: 50px 20px; text-align: center;">
+    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        <div>🔒 SSL Secure Checkout</div>
+        <div>✅ 30-Day Money Back Guarantee</div>
+        <div>👥 2,847 Active Students</div>
+        <div>⭐ 4.9/5 Average Rating</div>
+    </div>
+</section>
+
+<!-- 3. LIVE INCOME COUNTER (Add as fixed element) -->
+<div style="position: fixed; top: 80px; left: 20px; background: rgba(0,0,0,0.9); border: 1px solid var(--primary-color); padding: 15px 25px; border-radius: 10px; z-index: 50;">
+    <p style="font-size: 0.9rem; opacity: 0.8;">Students Earning Right Now</p>
+    <p style="font-size: 1.8rem; color: var(--primary-color); font-weight: bold;">$<span id="live-income">12,847</span></p>
+</div>
+
+<!-- 4. DECREASING SPOTS COUNTER (Add to hero) -->
+<div style="background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.3); padding: 15px 30px; border-radius: 30px; display: inline-block; margin: 20px 0;">
+    <span style="color: #ff0000; font-weight: bold;">⚠️ Only <span id="spots-left">12</span> spots remaining at this price</span>
+</div>
+
+<!-- 5. FAQ SECTION -->
+<section style="padding: 100px 20px; max-width: 800px; margin: 0 auto;">
+    <h2 style="font-size: 3rem; text-align: center; margin-bottom: 50px;">Frequently Asked Questions</h2>
+    
+    <div class="faq-item" style="margin-bottom: 30px; padding: 30px; background: rgba(255,255,255,0.02); border-radius: 15px;">
+        <h3 style="color: var(--primary-color); margin-bottom: 10px;">Do I need any technical skills?</h3>
+        <p>No! If you can write an email, you can use AI to generate income. Our step-by-step system works for complete beginners.</p>
+    </div>
+    
+    <div class="faq-item" style="margin-bottom: 30px; padding: 30px; background: rgba(255,255,255,0.02); border-radius: 15px;">
+        <h3 style="color: var(--primary-color); margin-bottom: 10px;">How quickly can I start earning?</h3>
+        <p>Most students report their first income within 7-14 days. Some have made their first $100 within 48 hours of starting.</p>
+    </div>
+    
+    <div class="faq-item" style="margin-bottom: 30px; padding: 30px; background: rgba(255,255,255,0.02); border-radius: 15px;">
+        <h3 style="color: var(--primary-color); margin-bottom: 10px;">What if it doesn't work for me?</h3>
+        <p>We offer a 30-day money-back guarantee. If you don't see results, we'll refund every penny. Zero risk.</p>
+    </div>
+</section>
+
+<!-- 6. EMAIL CAPTURE POPUP -->
+<div id="email-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; border: 2px solid var(--primary-color); padding: 40px; border-radius: 20px; z-index: 1000; max-width: 500px; text-align: center;">
+    <h3 style="color: var(--primary-color); margin-bottom: 20px;">Wait! Don't Leave Empty-Handed</h3>
+    <p style="margin-bottom: 20px;">Get our FREE "5 AI Prompts That Generate $100/Day" guide</p>
+    <input type="email" placeholder="Enter your email" style="width: 100%; padding: 15px; margin-bottom: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 10px;">
+    <button style="width: 100%; padding: 15px; background: var(--primary-color); color: black; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">Send Me The Guide</button>
+    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">We respect your privacy. Unsubscribe anytime.</p>
+</div>
+
+<!-- 7. MEDIA LOGOS -->
+<section style="padding: 50px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <p style="opacity: 0.6; margin-bottom: 20px;">As Featured In</p>
+    <div style="display: flex; justify-content: center; gap: 40px; opacity: 0.3; filter: grayscale(100%);">
+        <div>Forbes</div>
+        <div>TechCrunch</div>
+        <div>Entrepreneur</div>
+        <div>WIRED</div>
+        <div>Inc.</div>
+    </div>
+</section>
+
+<!-- 8. URGENCY BANNER -->
+<div style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(90deg, #ff0000, #ff00ff); padding: 15px; text-align: center; z-index: 100;">
+    <p style="font-weight: bold; font-size: 1.1rem;">
+        🔥 SPECIAL OFFER EXPIRES IN <span id="bottom-countdown">23:59:47</span> - SAVE $500 TODAY
+    </p>
+</div>
+
+<!-- ENHANCED JAVASCRIPT -->
+<script>
+// Add to existing script:
+
+// Live income counter
+setInterval(() => {
+    const current = parseInt(document.getElementById('live-income').textContent.replace(',', ''));
+    const increment = Math.floor(Math.random() * 200) + 50;
+    document.getElementById('live-income').textContent = (current + increment).toLocaleString();
+}, 3000);
+
+// Decreasing spots
+let spots = 12;
+setInterval(() => {
+    if (spots > 3) {
+        spots--;
+        document.getElementById('spots-left').textContent = spots;
+        
+        // Flash red when it decreases
+        const spotsElement = document.getElementById('spots-left');
+        spotsElement.style.color = '#ff0000';
+        spotsElement.style.transform = 'scale(1.5)';
+        setTimeout(() => {
+            spotsElement.style.transform = 'scale(1)';
+        }, 300);
+    }
+}, 45000); // Every 45 seconds
+
+// Exit intent popup
+let exitShown = false;
+document.addEventListener('mouseout', (e) => {
+    if (e.clientY <= 0 && !exitShown) {
+        document.getElementById('email-popup').style.display = 'block';
+        exitShown = true;
+    }
+});
+
+// Working AI chat responses
+const aiChatResponses = {
+    'default': 'Great question! Most students start earning within 7-14 days using our system.',
+    'how much': 'Students average $5,000-$10,000/month. Top performers reach $50K+!',
+    'experience': 'No experience needed! If you can use email, you can do this.',
+    'time': 'Most students work 2-4 hours per day and see results within 2 weeks.',
+    'guarantee': 'Yes! 30-day money-back guarantee. If you don\'t see results, full refund.'
+};
+
+// Add PayPal buttons
+function addPayPalButtons() {
+    // Replace all "ENROLL NOW" and "GET ACCESS" buttons with PayPal
+    document.querySelectorAll('.neon-btn').forEach(btn => {
+        if (btn.textContent.includes('ENROLL') || btn.textContent.includes('ACCESS')) {
+            btn.onclick = function() {
+                // For now, just show price
+                alert('Click OK to proceed to PayPal checkout for $497');
+                // In production, integrate actual PayPal here
+            };
+        }
+    });
+}
+
+addPayPalButtons();
+</script>

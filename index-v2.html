@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fortune Academy - Your Journey to Financial Freedom</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ff88;
+            --secondary-color: #7c3aed;
+            --accent-color: #ff00ff;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .lang-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Live Income Counter */
+        .live-income-counter {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: rgba(0,0,0,0.95);
+            border: 1px solid var(--primary-color);
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+        }
+
+        .live-income-counter p:first-child {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .live-income-counter p:last-child {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-up 10s infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1.5);
+            }
+        }
+
+        /* Floating 3D Elements */
+        .floating-3d {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            animation: rotate3d 20s infinite linear;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary-color);
+            background: rgba(0, 255, 136, 0.1);
+            opacity: 0.3;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 1200px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .glitch {
+            position: relative;
+            color: var(--text-primary);
+            animation: glitch-animation 2s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--primary-color);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--accent-color);
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(0 0 70% 0); transform: translate(-1px, 1px); }
+            80% { clip-path: inset(80% 0 0 0); transform: translate(1px, -1px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(70% 0 0 0); transform: translate(2px, -1px); }
+            40% { clip-path: inset(0 0 30% 0); transform: translate(-2px, 1px); }
+            60% { clip-path: inset(40% 0 40% 0); transform: translate(1px, 2px); }
+            80% { clip-path: inset(0 0 80% 0); transform: translate(-1px, -2px); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Scarcity Counter */
+        .scarcity-counter {
+            background: rgba(255,0,0,0.1);
+            border: 1px solid rgba(255,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .scarcity-counter span {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        #spots-left {
+            font-size: 1.3em;
+            display: inline-block;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Neon Button */
+        .neon-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--bg-dark);
+            background: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .neon-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .neon-btn:hover {
+            color: var(--text-primary);
+            box-shadow: 0 0 40px var(--primary-color),
+                        inset 0 0 20px rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .neon-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .neon-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Media Logos */
+        .media-section {
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin: 80px 0;
+        }
+
+        .media-section p {
+            opacity: 0.6;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .media-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .media-logos:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .media-logos img {
+            height: 30px;
+            object-fit: contain;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+            opacity: 0.05;
+            animation: rotate 20s linear infinite;
+        }
+
+        .pricing-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-section h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .original-price {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            opacity: 0.5;
+            margin-bottom: 10px;
+        }
+
+        .current-price {
+            font-size: 4rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .price-timer {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .price-timer span {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* Income Calculator */
+        .calculator-section {
+            padding: 150px 20px;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg at 50% 50%,
+                transparent 0deg,
+                var(--primary-color) 60deg,
+                transparent 120deg
+            );
+            animation: rotate 10s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .calculator-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slider-container {
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .custom-slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            position: relative;
+        }
+
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .custom-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 40px var(--primary-color);
+        }
+
+        .income-display {
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .income-amount {
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 80px rgba(0, 255, 136, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 150px 20px;
+            position: relative;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .product-modules {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .product-modules li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .product-modules li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Success Stories Carousel */
+        .testimonials-section {
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+
+        .testimonial-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .testimonial-income {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            padding: 50px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .countdown-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .countdown-timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-primary);
+        }
+
+        /* Social Proof Popup */
+        .social-proof-popup {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 20px 30px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            animation: slideInLeft 0.5s ease;
+            z-index: 200;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .proof-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* Progress Bar Section */
+        .progress-section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .progress-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .progress-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .progress-track {
+            background: rgba(255, 255, 255, 0.1);
+            height: 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 20px;
+            width: 0%;
+            animation: fillProgress 3s ease-out forwards;
+            position: relative;
+        }
+
+        @keyframes fillProgress {
+            to { width: 75%; }
+        }
+
+        .progress-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+            color: var(--bg-dark);
+            z-index: 1;
+        }
+
+        /* Email Popup */
+        #email-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-dark);
+            border: 2px solid var(--primary-color);
+            padding: 40px;
+            border-radius: 20px;
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
+        }
+
+        #email-popup h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        #email-popup input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        #email-popup button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: black;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        #email-popup button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #ff0000, #ff00ff);
+            padding: 15px;
+            text-align: center;
+            z-index: 100;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cursor, .cursor-follower {
+                display: none;
+            }
+            
+            body {
+                cursor: auto;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .calculator-container {
+                padding: 40px 20px;
+            }
+
+            .income-amount {
+                font-size: 3rem;
+            }
+
+            .testimonial-card {
+                min-width: 300px;
+            }
+
+            .social-proof-popup {
+                left: 10px;
+                right: 10px;
+            }
+
+            .live-income-counter {
+                top: 60px;
+                left: 10px;
+                right: 10px;
+                padding: 10px 15px;
+            }
+
+            .current-price {
+                font-size: 3rem;
+            }
+
+            .trust-badges {
+                gap: 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Student Success Counter -->
+    <div class="live-income-counter">
+        <p data-i18n="active-students">Active Students</p>
+        <p><span id="student-count">2,847</span></p>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-section">
+        <div class="countdown-content">
+            <span class="countdown-label" data-i18n="limited-spots">LIMITED TIME OFFER - PRICE INCREASES IN</span>
+            <span class="countdown-timer" id="countdown">23:59:47</span>
+        </div>
+    </div>
+
+    <!-- Floating 3D Elements -->
+    <div class="floating-3d" style="top: 20%; left: 10%;">
+        <div class="cube-face" style="transform: translateZ(50px);"></div>
+        <div class="cube-face" style="transform: rotateY(90deg) translateZ(50px);"></div>
+        <div class="cube-face" style="transform: rotateY(180deg) translateZ(50px);"></div>
+        <div class="cube-face" style="transform: rotateY(270deg) translateZ(50px);"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="glitch" data-text="Your AI Fortune" data-i18n="hero-line1">Your AI Fortune</span><br>
+                <span class="glitch" data-text="Starts Today" data-i18n="hero-line2">Starts Today</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">
+                Master AI. Generate Income. Achieve Freedom.
+            </p>
+            
+
+            <!-- PayPal Button Container -->
+            <div id="paypal-button-container"></div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section class="media-section">
+        <p data-i18n="featured-in">As Featured In</p>
+        <div class="media-logos">
+            <img src="https://via.placeholder.com/120x30/ffffff/000000?text=Forbes" alt="Forbes">
+            <img src="https://via.placeholder.com/120x30/ffffff/000000?text=TechCrunch" alt="TechCrunch">
+            <img src="https://via.placeholder.com/120x30/ffffff/000000?text=Entrepreneur" alt="Entrepreneur">
+            <img src="https://via.placeholder.com/120x30/ffffff/000000?text=WIRED" alt="WIRED">
+            <img src="https://via.placeholder.com/120x30/ffffff/000000?text=Inc." alt="Inc.">
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="pricing-content">
+            <h2 data-i18n="limited-offer">Limited Time Offer</h2>
+            <p class="original-price" data-i18n="regular-price">Regular Price: $997</p>
+            <p class="current-price" data-i18n="today-price">Today Only: $497</p>
+            <p class="price-timer">⏰ Price increases in <span id="price-countdown">23:59:47</span></p>
+            
+            <!-- PayPal Button Container -->
+            <div id="paypal-button-container-2"></div>
+        </div>
+    </section>
+
+    <!-- Income Calculator -->
+    <section class="calculator-section" id="calculator">
+        <div class="calculator-container">
+            <h2 class="calculator-title" data-i18n="calc-title">Calculate Your Potential</h2>
+            
+            <div class="slider-container">
+                <label style="font-size: 1.2rem; display: block; margin-bottom: 20px;">
+                    <span data-i18n="hours-label">Hours per day:</span> 
+                    <span id="hours-display" style="color: var(--primary-color); font-weight: bold;">2</span>
+                </label>
+                <input type="range" class="custom-slider" id="hours-slider" min="1" max="8" value="2">
+            </div>
+            
+            <div class="income-display">
+                <p style="font-size: 1.2rem; margin-bottom: 10px;" data-i18n="monthly-income">Monthly Income Potential</p>
+                <div class="income-amount"><span id="currency-symbol">$</span><span id="income-value">4,000</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h2 style="font-size: 3rem; text-align: center; margin-bottom: 80px;" data-i18n="products-title">
+            Your Path to $10K/Month
+        </h2>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <h3 class="product-title" data-i18n="course-title">AI Mastery Course</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;" data-i18n="course-desc">
+                    Step-by-step modules for beginners
+                </p>
+                <ul class="product-modules">
+                    <li data-i18n="module1">AI Basics: Your First $100</li>
+                    <li data-i18n="module2">Scaling to $1K/Month with AI Tools</li>
+                    <li data-i18n="module3">The $10K Blueprint: Advanced Strategies</li>
+                </ul>
+                <div id="paypal-button-container-3"></div>
+            </div>
+            
+            <div class="product-card">
+                <h3 class="product-title" data-i18n="vault-title">Prompt Template Vault</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;" data-i18n="vault-desc">
+                    Ready-to-use AI prompts for instant income
+                </p>
+                <ul class="product-modules">
+                    <li data-i18n="vault1">Content Creation Business Templates</li>
+                    <li data-i18n="vault2">AI Consulting Service Prompts</li>
+                    <li data-i18n="vault3">Automated Income Stream Builders</li>
+                </ul>
+                <div id="paypal-button-container-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="testimonials-section">
+        <h2 class="testimonials-title" data-i18n="success-title">Success Stories</h2>
+        
+        <div class="testimonial-carousel" id="testimonial-carousel">
+            <div class="testimonial-card">
+                <div class="testimonial-income">$12,847/month</div>
+                <p class="testimonial-text" data-i18n="testimonial1">
+                    "The AI strategies completely transformed my income. I went from zero to five figures in just 3 months!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <strong>Sarah Chen</strong><br>
+                        <span style="color: var(--text-secondary);" data-i18n="location1">San Francisco, CA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-income">$8,392/month</div>
+                <p class="testimonial-text" data-i18n="testimonial2">
+                    "I never thought I could make money with AI. This course proved me wrong. Now I work 2 hours a day!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <strong>Marcus Johnson</strong><br>
+                        <span style="color: var(--text-secondary);" data-i18n="location2">Austin, TX</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-income">$15,293/month</div>
+                <p class="testimonial-text" data-i18n="testimonial3">
+                    "The prompt templates alone paid for the course 100x over. This is the future of online business!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <strong>Lisa Park</strong><br>
+                        <span style="color: var(--text-secondary);" data-i18n="location3">New York, NY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-badges">
+            <div class="trust-badge">🔒 SSL Secure Checkout</div>
+            <div class="trust-badge">✅ 30-Day Money Back Guarantee</div>
+            <div class="trust-badge">👥 2,847 Active Students</div>
+            <div class="trust-badge">⭐ 4.9/5 Average Rating</div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="faq-title" data-i18n="faq-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq1-q">Do I need any technical skills?</h3>
+            <p data-i18n="faq1-a">No! If you can write an email, you can use AI to generate income. Our step-by-step system works for complete beginners.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq2-q">How quickly can I start earning?</h3>
+            <p data-i18n="faq2-a">Most students report their first income within 7-14 days. Some have made their first $100 within 48 hours of starting.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq3-q">What if it doesn't work for me?</h3>
+            <p data-i18n="faq3-a">We offer a 30-day money-back guarantee. If you don't see results, we'll refund every penny. Zero risk.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3 data-i18n="faq4-q">How much time do I need to invest?</h3>
+            <p data-i18n="faq4-a">Most successful students work 2-4 hours per day. The AI tools do most of the heavy lifting for you.</p>
+        </div>
+    </section>
+
+    <!-- Progress Bar Section -->
+    <section class="progress-section">
+        <div class="progress-container">
+            <h2 class="progress-title" data-i18n="progress-title">Distance to Financial Freedom</h2>
+            <div class="progress-track">
+                <div class="progress-fill">
+                    <span class="progress-label" data-i18n="progress-label">75% THERE</span>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2rem; color: var(--text-secondary);" data-i18n="progress-text">
+                You're closer than you think. Take the leap today.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer style="background: #000; padding: 80px 20px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <h3 style="font-size: 2rem; margin-bottom: 40px; color: var(--primary-color);">
+            Ready to Transform Your Life?
+        </h3>
+        
+        <!-- PayPal Button Container -->
+        <div id="paypal-button-container-5" style="margin-bottom: 50px;"></div>
+        
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">🇺🇸</button>
+            <button class="lang-btn" data-lang="ja">🇯🇵</button>
+            <button class="lang-btn" data-lang="ko">🇰🇷</button>
+            <button class="lang-btn" data-lang="zh-tw">🇹🇼</button>
+            <button class="lang-btn" data-lang="es-mx">🇲🇽</button>
+            <button class="lang-btn" data-lang="tl">🇵🇭</button>
+        </div>
+        
+        <p style="margin-top: 40px; color: var(--text-secondary); font-size: 0.9rem;">
+            © 2025 AI Fortune Academy. All rights reserved.<br>
+            <span style="margin-top: 10px; display: block;">
+                <a href="blog.html" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Blog</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Privacy Policy</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Terms of Service</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Contact</a>
+            </span>
+        </p>
+    </footer>
+
+    <!-- Social Proof Popup -->
+    <div class="social-proof-popup" id="social-proof">
+        <div class="proof-avatar"></div>
+        <div>
+            <strong id="proof-name">John from Texas</strong><br>
+            <span style="color: var(--text-secondary);" data-i18n="just-enrolled">just enrolled!</span>
+        </div>
+    </div>
+
+    <!-- Email Capture Popup -->
+    <div id="email-popup">
+        <span class="close-popup" onclick="document.getElementById('email-popup').style.display='none'">×</span>
+        <h3 data-i18n="wait-dont-leave">Wait! Don't Leave Empty-Handed</h3>
+        <p data-i18n="free-guide">Get our FREE "5 AI Prompts That Generate $100/Day" guide</p>
+        <input type="email" placeholder="Enter your email" data-i18n-placeholder="enter-email">
+        <button onclick="alert('Thank you! Check your email for the guide.'); document.getElementById('email-popup').style.display='none';">
+            <span data-i18n="send-guide">Send Me The Guide</span>
+        </button>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;" data-i18n="privacy">
+            We respect your privacy. Unsubscribe anytime.
+        </p>
+    </div>
+
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        🔥 SPECIAL OFFER EXPIRES IN <span id="bottom-countdown">23:59:47</span> - SAVE $500 TODAY
+    </div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR-PAYPAL-CLIENT-ID&currency=USD"></script>
+
+    <script>
+        // Multi-language translations
+        const translations = {
+            en: {
+                'active-students': 'Active Students',
+                'limited-spots': 'LIMITED TIME OFFER - PRICE INCREASES IN',
+                'hero-line1': 'Your AI Fortune',
+                'hero-line2': 'Starts Today',
+                'hero-subtitle': 'Master AI. Generate Income. Achieve Freedom.',
+                'featured-in': 'As Featured In',
+                'limited-offer': 'Limited Time Offer',
+                'regular-price': 'Regular Price: $997',
+                'today-price': 'Today Only: $497',
+                'calc-title': 'Calculate Your Potential',
+                'hours-label': 'Hours per day:',
+                'monthly-income': 'Monthly Income Potential',
+                'products-title': 'Your Path to $10K/Month',
+                'course-title': 'AI Mastery Course',
+                'course-desc': 'Step-by-step modules for beginners',
+                'module1': 'AI Basics: Your First $100',
+                'module2': 'Scaling to $1K/Month with AI Tools',
+                'module3': 'The $10K Blueprint: Advanced Strategies',
+                'vault-title': 'Prompt Template Vault',
+                'vault-desc': 'Ready-to-use AI prompts for instant income',
+                'vault1': 'Content Creation Business Templates',
+                'vault2': 'AI Consulting Service Prompts',
+                'vault3': 'Automated Income Stream Builders',
+                'success-title': 'Success Stories',
+                'testimonial1': 'The AI strategies completely transformed my income. I went from zero to five figures in just 3 months!',
+                'testimonial2': 'I never thought I could make money with AI. This course proved me wrong. Now I work 2 hours a day!',
+                'testimonial3': 'The prompt templates alone paid for the course 100x over. This is the future of online business!',
+                'location1': 'San Francisco, CA',
+                'location2': 'Austin, TX',
+                'location3': 'New York, NY',
+                'faq-title': 'Frequently Asked Questions',
+                'faq1-q': 'Do I need any technical skills?',
+                'faq1-a': 'No! If you can write an email, you can use AI to generate income. Our step-by-step system works for complete beginners.',
+                'faq2-q': 'How quickly can I start earning?',
+                'faq2-a': 'Most students report their first income within 7-14 days. Some have made their first $100 within 48 hours of starting.',
+                'faq3-q': 'What if it doesn\'t work for me?',
+                'faq3-a': 'We offer a 30-day money-back guarantee. If you don\'t see results, we\'ll refund every penny. Zero risk.',
+                'faq4-q': 'How much time do I need to invest?',
+                'faq4-a': 'Most successful students work 2-4 hours per day. The AI tools do most of the heavy lifting for you.',
+                'progress-title': 'Distance to Financial Freedom',
+                'progress-label': '75% THERE',
+                'progress-text': 'You\'re closer than you think. Take the leap today.',
+                'just-enrolled': 'just enrolled!',
+                'wait-dont-leave': 'Wait! Don\'t Leave Empty-Handed',
+                'free-guide': 'Get our FREE "5 AI Prompts That Generate $100/Day" guide',
+                'enter-email': 'Enter your email',
+                'send-guide': 'Send Me The Guide',
+                'privacy': 'We respect your privacy. Unsubscribe anytime.'
+            },
+            ja: {
+                'active-students': 'アクティブな生徒数',
+                'limited-spots': '期間限定オファー - 値上げまで',
+                'hero-line1': 'AIで富を築く',
+                'hero-line2': '今日から始まる',
+                'hero-subtitle': 'AIをマスター。収入を生成。自由を実現。',
+                'featured-in': '掲載メディア',
+                'limited-offer': '期間限定オファー',
+                'regular-price': '通常価格：¥149,550',
+                'today-price': '本日限定：¥74,550',
+                'calc-title': 'あなたの可能性を計算',
+                'hours-label': '1日の作業時間：',
+                'monthly-income': '月収の可能性',
+                'products-title': '月収150万円への道',
+                'course-title': 'AIマスタリーコース',
+                'course-desc': '初心者向けステップバイステップモジュール',
+                'module1': 'AI基礎：最初の1万5千円',
+                'module2': 'AIツールで月15万円へスケール',
+                'module3': '150万円の設計図：上級戦略',
+                'vault-title': 'プロンプトテンプレート保管庫',
+                'vault-desc': 'すぐに使えるAIプロンプト',
+                'vault1': 'コンテンツ作成ビジネステンプレート',
+                'vault2': 'AIコンサルティングサービスプロンプト',
+                'vault3': '自動収入ストリームビルダー',
+                'success-title': '成功事例',
+                'testimonial1': 'AI戦略が私の収入を完全に変えました。たった3ヶ月でゼロから5桁の収入に！',
+                'testimonial2': 'AIでお金を稼げるとは思いませんでした。このコースが間違いを証明しました。今は1日2時間働いています！',
+                'testimonial3': 'プロンプトテンプレートだけでコース代金の100倍以上の価値がありました。これがオンラインビジネスの未来です！',
+                'location1': 'サンフランシスコ、CA',
+                'location2': 'オースティン、TX',
+                'location3': 'ニューヨーク、NY',
+                'faq-title': 'よくある質問',
+                'faq1-q': '技術的なスキルは必要ですか？',
+                'faq1-a': 'いいえ！メールが書ければ、AIを使って収入を生み出せます。完全な初心者向けのステップバイステップシステムです。',
+                'faq2-q': 'どのくらい早く稼ぎ始められますか？',
+                'faq2-a': 'ほとんどの生徒は7〜14日以内に最初の収入を報告しています。開始から48時間以内に最初の1万5千円を稼いだ人もいます。',
+                'faq3-q': 'うまくいかなかったらどうなりますか？',
+                'faq3-a': '30日間の返金保証を提供しています。結果が出なければ、全額返金します。リスクゼロです。',
+                'faq4-q': 'どのくらいの時間を投資する必要がありますか？',
+                'faq4-a': '成功している生徒のほとんどは1日2〜4時間働いています。AIツールがほとんどの重い作業をしてくれます。',
+                'progress-title': '経済的自由までの距離',
+                'progress-label': '75%達成',
+                'progress-text': 'あなたが思っているより近くにいます。今日、飛躍しましょう。',
+                'just-enrolled': 'が登録しました！',
+                'wait-dont-leave': 'お待ちください！手ぶらで帰らないでください',
+                'free-guide': '無料の「1日1万5千円を生み出す5つのAIプロンプト」ガイドを入手',
+                'enter-email': 'メールアドレスを入力',
+                'send-guide': 'ガイドを送る',
+                'privacy': 'プライバシーを尊重します。いつでも購読解除できます。'
+            },
+            ko: {
+                'active-students': '활동 중인 학생',
+                'limited-spots': '한정 시간 혜택 - 가격 인상까지',
+                'hero-line1': 'AI로 부를 쌓다',
+                'hero-line2': '오늘 시작하세요',
+                'hero-subtitle': 'AI 마스터. 수입 창출. 자유 달성.',
+                'regular-price': '정가: ₩1,292,200',
+                'today-price': '오늘만: ₩646,100',
+                'faq1-q': '기술적인 기술이 필요한가요?',
+                'faq1-a': '아니요! 이메일을 쓸 수 있다면 AI를 사용하여 수입을 창출할 수 있습니다. 완전 초보자를 위한 단계별 시스템입니다.',
+                'faq2-q': '얼마나 빨리 수익을 올릴 수 있나요?',
+                'faq2-a': '대부분의 학생들은 7-14일 이내에 첫 수입을 보고합니다. 일부는 시작 후 48시간 이내에 첫 13만원을 벌었습니다.',
+                'faq3-q': '나에게 효과가 없으면 어떻게 되나요?',
+                'faq3-a': '30일 환불 보장을 제공합니다. 결과가 나타나지 않으면 전액 환불해 드립니다. 위험 제로입니다.',
+                'faq4-q': '얼마나 많은 시간을 투자해야 하나요?',
+                'faq4-a': '성공한 학생들 대부분은 하루 2-4시간 일합니다. AI 도구가 대부분의 무거운 작업을 대신해줍니다.'
+            },
+            'zh-tw': {
+                'active-students': '活躍學生',
+                'limited-spots': '限時優惠 - 價格上漲倒數',
+                'regular-price': '原價：NT$30,814',
+                'today-price': '今日特價：NT$15,407',
+                'faq1-q': '我需要任何技術技能嗎？',
+                'faq1-a': '不需要！如果你會寫電子郵件，你就能使用AI來創造收入。我們的逐步系統適合完全的初學者。',
+                'faq2-q': '我能多快開始賺錢？',
+                'faq2-a': '大多數學生在7-14天內報告他們的第一筆收入。有些人在開始後48小時內就賺到了第一個3000元。',
+                'faq3-q': '如果對我沒用怎麼辦？',
+                'faq3-a': '我們提供30天退款保證。如果你看不到結果，我們將退還每一分錢。零風險。',
+                'faq4-q': '我需要投入多少時間？',
+                'faq4-a': '大多數成功的學生每天工作2-4小時。AI工具為你完成大部分繁重的工作。'
+            },
+            'es-mx': {
+                'active-students': 'Estudiantes Activos',
+                'limited-spots': 'OFERTA POR TIEMPO LIMITADO - EL PRECIO AUMENTA EN',
+                'regular-price': 'Precio Regular: $16,898 MXN',
+                'today-price': 'Solo Hoy: $8,449 MXN',
+                'faq1-q': '¿Necesito habilidades técnicas?',
+                'faq1-a': '¡No! Si puedes escribir un correo electrónico, puedes usar IA para generar ingresos. Nuestro sistema paso a paso funciona para principiantes completos.',
+                'faq2-q': '¿Qué tan rápido puedo empezar a ganar?',
+                'faq2-a': 'La mayoría de los estudiantes reportan sus primeros ingresos dentro de 7-14 días. Algunos han ganado sus primeros $1,700 MXN dentro de las 48 horas de comenzar.',
+                'faq3-q': '¿Qué pasa si no funciona para mí?',
+                'faq3-a': 'Ofrecemos una garantía de devolución de dinero de 30 días. Si no ves resultados, te devolvemos cada peso. Cero riesgo.',
+                'faq4-q': '¿Cuánto tiempo necesito invertir?',
+                'faq4-a': 'La mayoría de los estudiantes exitosos trabajan 2-4 horas por día. Las herramientas de IA hacen la mayor parte del trabajo pesado por ti.'
+            },
+            tl: {
+                'active-students': 'Active Students',
+                'limited-spots': 'LIMITED TIME OFFER - TATAAS ANG PRESYO SA',
+                'regular-price': 'Regular na Presyo: ₱55,664',
+                'today-price': 'Ngayon Lang: ₱27,832',
+                'faq1-q': 'Kailangan ko ba ng technical skills?',
+                'faq1-a': 'Hindi! Kung marunong kang mag-email, kaya mong gumamit ng AI para kumita. Ang aming step-by-step system ay para sa complete beginners.',
+                'faq2-q': 'Gaano kabilis ako magsisimulang kumita?',
+                'faq2-a': 'Karamihan ng students ay nagrereport ng first income nila within 7-14 days. May ilan na kumita ng first ₱5,600 nila within 48 hours.',
+                'faq3-q': 'Paano kung hindi gumana para sa akin?',
+                'faq3-a': 'May 30-day money-back guarantee kami. Kung walang results, ibabalik namin lahat. Zero risk.',
+                'faq4-q': 'Gaano katagal ang kailangan kong i-invest?',
+                'faq4-a': 'Karamihan ng successful students ay nagtatrabaho 2-4 hours per day. Ang AI tools ang gumagawa ng most ng heavy lifting para sa\'yo.'
+            }
+        };
+
+        // Currency configurations
+        const currencyConfig = {
+            en: { symbol: '$', multiplier: 1 },
+            ja: { symbol: '¥', multiplier: 150 },
+            ko: { symbol: '₩', multiplier: 1300 },
+            'zh-tw': { symbol: 'NT$', multiplier: 31 },
+            'es-mx': { symbol: '$', multiplier: 17 },
+            tl: { symbol: '₱', multiplier: 56 }
+        };
+
+        // PayPal price configurations
+        const paypalPrices = {
+            en: 497,
+            ja: 74550,
+            ko: 646100,
+            'zh-tw': 15407,
+            'es-mx': 8449,
+            tl: 27832
+        };
+
+        // Names for social proof
+        const proofNames = {
+            en: ['John from Texas', 'Sarah from California', 'Mike from Florida', 'Emma from NYC', 'David from Seattle', 'Lisa from Chicago'],
+            ja: ['東京の田中さん', '大阪の鈴木さん', '京都の佐藤さん', '福岡の高橋さん', '名古屋の山田さん', '札幌の伊藤さん'],
+            ko: ['서울의 김민수', '부산의 이지은', '대구의 박준호', '인천의 최서연', '광주의 정민호', '대전의 강수진'],
+            'zh-tw': ['台北的陳先生', '高雄的林小姐', '台中的王先生', '新竹的張小姐', '桃園的李先生', '台南的黃小姐'],
+            'es-mx': ['Juan de CDMX', 'María de Guadalajara', 'Carlos de Monterrey', 'Ana de Puebla', 'Luis de Tijuana', 'Sofia de Cancún'],
+            tl: ['Juan from Manila', 'Maria from Cebu', 'Jose from Davao', 'Ana from QC', 'Pedro from Makati', 'Rosa from Pasig']
+        };
+
+        // AI Chat Responses
+        const aiChatResponses = {
+            en: {
+                'default': 'Great question! Most students start earning within 7-14 days using our proven system.',
+                'how much': 'Students average $5,000-$10,000/month. Top performers reach $50K+!',
+                'experience': 'No experience needed! If you can use email, you can do this.',
+                'time': 'Most students work 2-4 hours per day and see results within 2 weeks.',
+                'guarantee': 'Yes! 30-day money-back guarantee. If you don\'t see results, full refund.',
+                'price': 'Today\'s special price is $497 (regular $997). Price increases when timer hits zero!',
+                'start': 'Click any "Enroll Now" button to get instant access to all modules!'
+            },
+            ja: {
+                'default': '素晴らしい質問です！ほとんどの生徒は実証済みのシステムを使用して7〜14日以内に収益を上げ始めます。',
+                'how much': '生徒の平均は月75万〜150万円です。トップパフォーマーは750万円以上に達します！',
+                'experience': '経験は必要ありません！メールが使えれば、これができます。',
+                'time': 'ほとんどの生徒は1日2〜4時間働き、2週間以内に結果が出ます。',
+                'guarantee': 'はい！30日間の返金保証。結果が出なければ、全額返金します。',
+                'price': '今日の特別価格は74,550円（通常149,550円）です。タイマーがゼロになると価格が上がります！',
+                'start': '「今すぐ登録」ボタンをクリックして、すべてのモジュールに即座にアクセスしてください！'
+            },
+            ko: {
+                'default': '좋은 질문입니다! 대부분의 학생들은 입증된 시스템을 사용하여 7-14일 내에 수익을 올리기 시작합니다.',
+                'how much': '학생들은 평균적으로 월 650만원-1300만원을 벌고 있습니다. 최고 수익자는 6500만원 이상!',
+                'experience': '경험이 필요 없습니다! 이메일을 사용할 수 있다면 할 수 있습니다.',
+                'time': '대부분의 학생들은 하루 2-4시간 일하고 2주 내에 결과를 봅니다.',
+                'guarantee': '네! 30일 환불 보장. 결과가 없으면 전액 환불합니다.',
+                'price': '오늘 특별 가격은 646,100원(정가 1,292,200원)입니다. 타이머가 0이 되면 가격이 인상됩니다!',
+                'start': '"지금 등록" 버튼을 클릭하여 모든 모듈에 즉시 액세스하세요!'
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Custom cursor
+        if (window.matchMedia('(min-width: 768px)').matches) {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX - 10 + 'px';
+                    cursorFollower.style.top = e.clientY - 10 + 'px';
+                }, 100);
+            });
+        }
+
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Language switching
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentLang = this.dataset.lang;
+                updateLanguage();
+                updateCurrency();
+            });
+        });
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.innerHTML = translations[currentLang][key];
+                }
+            });
+            
+            // Update glitch effect data attributes
+            document.querySelectorAll('.glitch').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.setAttribute('data-text', translations[currentLang][key]);
+                }
+            });
+
+            // Update placeholder text
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.placeholder = translations[currentLang][key];
+                }
+            });
+        }
+
+        function updateCurrency() {
+            const config = currencyConfig[currentLang];
+            document.getElementById('currency-symbol').textContent = config.symbol;
+            updateIncomeCalculator();
+        }
+
+        // Income Calculator
+        const hoursSlider = document.getElementById('hours-slider');
+        const hoursDisplay = document.getElementById('hours-display');
+        const incomeValue = document.getElementById('income-value');
+
+        hoursSlider.addEventListener('input', updateIncomeCalculator);
+
+        function updateIncomeCalculator() {
+            const hours = hoursSlider.value;
+            hoursDisplay.textContent = hours;
+            
+            const config = currencyConfig[currentLang];
+            const baseIncome = hours * 2000;
+            const localIncome = Math.floor(baseIncome * config.multiplier);
+            
+            incomeValue.textContent = localIncome.toLocaleString();
+            
+            // Animate the number
+            incomeValue.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                incomeValue.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Student Counter (slowly increases to show growth)
+        function updateStudentCount() {
+            const current = parseInt(document.getElementById('student-count').textContent.replace(/,/g, ''));
+            // Only occasionally add a new student (more realistic)
+            if (Math.random() > 0.7) {
+                const newValue = current + 1;
+                document.getElementById('student-count').textContent = newValue.toLocaleString();
+            }
+        }
+        setInterval(updateStudentCount, 30000); // Check every 30 seconds
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const midnight = new Date();
+            midnight.setHours(24, 0, 0, 0);
+            
+            const diff = midnight - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('countdown').textContent = timeString;
+            document.getElementById('price-countdown').textContent = timeString;
+            document.getElementById('bottom-countdown').textContent = timeString;
+        }
+
+
+        // Social Proof Notifications
+        function showSocialProof() {
+            const popup = document.getElementById('social-proof');
+            const names = proofNames[currentLang];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            
+            document.getElementById('proof-name').textContent = randomName;
+            popup.style.display = 'flex';
+            
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 5000);
+        }
+
+        // Exit Intent Popup
+        let exitShown = false;
+        document.addEventListener('mouseout', (e) => {
+            if (e.clientY <= 0 && !exitShown) {
+                document.getElementById('email-popup').style.display = 'block';
+                exitShown = true;
+            }
+        });
+
+        // Auto-scroll testimonials
+        const carousel = document.getElementById('testimonial-carousel');
+        let scrollAmount = 0;
+
+        function autoScrollTestimonials() {
+            scrollAmount += 1;
+            if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
+                scrollAmount = 0;
+            }
+            carousel.scrollTo(scrollAmount, 0);
+        }
+
+        // PayPal Integration
+        function initPayPal() {
+            if (typeof paypal === 'undefined') {
+                console.log('PayPal SDK not loaded. Replace YOUR-PAYPAL-CLIENT-ID with actual client ID.');
+                return;
+            }
+
+            // Create PayPal buttons for all containers
+            const buttonContainers = [
+                'paypal-button-container',
+                'paypal-button-container-2',
+                'paypal-button-container-3',
+                'paypal-button-container-4',
+                'paypal-button-container-5'
+            ];
+
+            buttonContainers.forEach(containerId => {
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: paypalPrices[currentLang].toString()
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            // Redirect to course access page
+                            window.location.href = 'course-access.html?order=' + details.id;
+                        });
+                    }
+                }).render('#' + containerId);
+            });
+        }
+
+        // Initialize
+        createParticles();
+        updateCountdown();
+        updateIncomeCalculator();
+        setInterval(updateCountdown, 1000);
+        setInterval(autoScrollTestimonials, 50);
+        
+        // Show social proof every 10-20 seconds
+        setInterval(() => {
+            if (Math.random() > 0.5) {
+                showSocialProof();
+            }
+        }, 10000 + Math.random() * 10000);
+        
+        // First notification after 3 seconds
+        setTimeout(showSocialProof, 3000);
+
+        // Initialize PayPal when ready
+        window.addEventListener('load', () => {
+            setTimeout(initPayPal, 1000);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
