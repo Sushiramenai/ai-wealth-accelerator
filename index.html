@@ -1096,8 +1096,22 @@
         </div>
     </div>
 
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR-PAYPAL-CLIENT-ID&currency=USD"></script>
+    <!-- Configuration -->
+    <script src="config.js"></script>
+    
+    <!-- PayPal SDK (loaded dynamically after config) -->
+    <script>
+        // Dynamically load PayPal SDK with config
+        const paypalScript = document.createElement('script');
+        paypalScript.src = `https://www.paypal.com/sdk/js?client-id=${window.AIWealthConfig.paypal.clientId}&currency=${window.AIWealthConfig.paypal.currency}`;
+        paypalScript.onload = function() {
+            // Initialize PayPal after SDK loads
+            if (window.initPayPal) {
+                window.initPayPal();
+            }
+        };
+        document.head.appendChild(paypalScript);
+    </script>
 
     <script>
         // Multi-language translations
@@ -1399,7 +1413,7 @@
         // PayPal Integration
         function initPayPal() {
             if (typeof paypal === 'undefined') {
-                console.log('PayPal SDK not loaded. Replace YOUR-PAYPAL-CLIENT-ID with actual client ID.');
+                console.log('PayPal SDK not loaded. Please add your PayPal Client ID in config.js file.');
                 return;
             }
 
@@ -1424,7 +1438,7 @@
                     onApprove: function(data, actions) {
                         return actions.order.capture().then(function(details) {
                             // Redirect to course access page
-                            window.location.href = 'course-access-enhanced.html?order=' + details.id;
+                            window.location.href = window.AIWealthConfig.course.accessUrl + '?order=' + details.id;
                         });
                     }
                 }).render('#' + containerId);

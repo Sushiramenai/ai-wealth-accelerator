@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - AI Wealth Accelerator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ff88;
+            --secondary-color: #7c3aed;
+            --accent-color: #ff00ff;
+            --bg-dark: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-color);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+
+        .support-box {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(0, 255, 136, 0.1));
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .support-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 40px;
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        
+        <h1>Frequently Asked Questions</h1>
+        <p class="subtitle">Everything you need to know about AI Wealth Accelerator</p>
+
+        <!-- Access & Technical -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How do I access the course after purchase?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Immediately after your purchase, you'll be redirected to your student portal. You'll also receive an email with your access link. Save this email for future logins. If you don't see the email, check your spam folder.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>I can't access my course. What should I do?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>First, check your email (including spam) for your access link. If you still can't access it, email support@aiwealthaccelerator.com with your order details and we'll help you within 24 hours.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Do I need any technical skills to start?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>No! The course is designed for complete beginners. If you can use email and browse the internet, you have all the technical skills needed. We explain everything step-by-step.</p>
+            </div>
+        </div>
+
+        <!-- Course Content -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How long do I have access to the course?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>You have lifetime access! Once you purchase, you can go through the material at your own pace and revisit it anytime. Plus, you'll get all future updates for free.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How long does it take to complete the course?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>The course contains about 15-20 hours of content across 7 modules. Most students complete it in 2-4 weeks, studying 1-2 hours per day. However, you can go at your own pace.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What exactly will I learn?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>You'll learn how to use AI tools like ChatGPT to build a profitable online business. This includes finding clients, creating services, pricing strategies, automation systems, and scaling to $10K+/month. Check out our full curriculum for detailed modules.</p>
+            </div>
+        </div>
+
+        <!-- Money & Results -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Is there a money-back guarantee?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! We offer a 30-day money-back guarantee. If you're not satisfied, simply email us showing you've completed at least Module 1 and taken action, and we'll refund your purchase.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How quickly can I start making money?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Many students land their first client within 7-14 days of starting. Your results depend on how quickly you implement what you learn. We've had students make their first $1,000 within the first month.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Do you guarantee I'll make $10K/month?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>We can't guarantee specific income results as success depends on your effort, dedication, and implementation. What we do guarantee is that you'll learn the exact systems our successful students use to build their AI businesses.</p>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What kind of support do I get?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>You get email support (24-hour response time), access to our student community, weekly Q&A sessions, and comprehensive course materials. We're committed to your success!</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Do I get a certificate when I complete the course?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! Upon completing all 7 modules, you'll earn your official AI Wealth Expert Certificate. This is a professional credential you can add to your LinkedIn profile and resume.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What if I get stuck or have questions?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Email us at support@aiwealthaccelerator.com anytime! We respond within 24 hours. You can also join our weekly Q&A sessions where we answer questions live.</p>
+            </div>
+        </div>
+
+        <!-- Support Box -->
+        <div class="support-box">
+            <h2>Still Have Questions?</h2>
+            <p>We're here to help! Reach out anytime.</p>
+            <p style="margin-top: 20px;">
+                <strong>Email:</strong> support@aiwealthaccelerator.com<br>
+                <strong>Response Time:</strong> Within 24 hours
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current FAQ
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
