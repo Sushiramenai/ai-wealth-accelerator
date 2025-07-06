@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Wealth Accelerator - Stop Building Someone Else's Dream</title>
-    <meta name="description" content="Your job is training its AI replacement. Learn to profit from AI before it profits from replacing you. 2,847 people already escaped the 9-5.">
+    <title>AI Fortune Academy - Your Journey to Financial Freedom</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
@@ -18,7 +17,6 @@
             --primary-color: #00ff88;
             --secondary-color: #7c3aed;
             --accent-color: #ff00ff;
-            --danger-color: #ff0044;
             --bg-dark: #0a0a0a;
             --bg-darker: #050505;
             --text-primary: #ffffff;
@@ -90,38 +88,12 @@
             border-color: var(--primary-color);
         }
 
-        /* Job Replacement Counter */
-        .replacement-counter {
+        /* Live Income Counter */
+        .live-income-counter {
             position: fixed;
             top: 80px;
             left: 20px;
-            background: rgba(255, 0, 68, 0.1);
-            border: 1px solid var(--danger-color);
-            padding: 15px 25px;
-            border-radius: 10px;
-            z-index: 50;
-            backdrop-filter: blur(10px);
-        }
-
-        .replacement-counter p:first-child {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 5px;
-            color: var(--danger-color);
-        }
-
-        .replacement-counter p:last-child {
-            font-size: 1.8rem;
-            color: var(--danger-color);
-            font-weight: bold;
-        }
-
-        /* Freedom Counter */
-        .freedom-counter {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: rgba(0, 255, 136, 0.1);
+            background: rgba(0,0,0,0.95);
             border: 1px solid var(--primary-color);
             padding: 15px 25px;
             border-radius: 10px;
@@ -129,13 +101,13 @@
             backdrop-filter: blur(10px);
         }
 
-        .freedom-counter p:first-child {
+        .live-income-counter p:first-child {
             font-size: 0.9rem;
             opacity: 0.8;
             margin-bottom: 5px;
         }
 
-        .freedom-counter p:last-child {
+        .live-income-counter p:last-child {
             font-size: 1.8rem;
             color: var(--primary-color);
             font-weight: bold;
@@ -164,24 +136,57 @@
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-color);
             border-radius: 50%;
             opacity: 0;
-            animation: float-up 10s infinite;
+            filter: blur(0.5px);
+        }
+        
+        .particle-small {
+            width: 8px;
+            height: 8px;
+            animation: float-up 20s infinite ease-in-out;
+        }
+        
+        .particle-medium {
+            width: 10px;
+            height: 10px;
+            animation: float-up 18s infinite ease-in-out;
+        }
+        
+        .particle-large {
+            width: 12px;
+            height: 12px;
+            animation: float-up 22s infinite ease-in-out;
+        }
+        
+        .particle-purple {
+            background: #7c3aed;
+            box-shadow: 0 0 15px #7c3aed, 0 0 30px #7c3aed;
+        }
+        
+        .particle-cyan {
+            background: #00bfff;
+            box-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
+        }
+        
+        .particle-green {
+            background: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color);
         }
 
         @keyframes float-up {
             0% {
                 opacity: 0;
-                transform: translateY(100vh) scale(0);
+                transform: translateY(100vh) scale(0.5);
             }
-            10% {
-                opacity: 1;
+            15% {
+                opacity: 0.6;
             }
-            90% {
-                opacity: 1;
+            50% {
+                opacity: 0.8;
+            }
+            85% {
+                opacity: 0.6;
             }
             100% {
                 opacity: 0;
@@ -228,42 +233,56 @@
             max-width: 1200px;
         }
 
-        .warning-badge {
-            display: inline-block;
-            background: rgba(255, 0, 68, 0.1);
-            border: 1px solid var(--danger-color);
-            color: var(--danger-color);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            animation: pulse-danger 2s infinite;
-        }
-
-        @keyframes pulse-danger {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
-        }
-
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-size: clamp(3rem, 10vw, 7rem);
             font-weight: 700;
             line-height: 0.9;
             margin-bottom: 30px;
             position: relative;
         }
 
-        .title-line1 {
-            color: var(--danger-color);
-            display: block;
-            margin-bottom: 10px;
+        .glitch {
+            position: relative;
+            color: var(--text-primary);
+            animation: glitch-animation 2s infinite;
         }
 
-        .title-line2 {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--primary-color);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--accent-color);
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(0 0 70% 0); transform: translate(-1px, 1px); }
+            80% { clip-path: inset(80% 0 0 0); transform: translate(1px, -1px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(70% 0 0 0); transform: translate(2px, -1px); }
+            40% { clip-path: inset(0 0 30% 0); transform: translate(-2px, 1px); }
+            60% { clip-path: inset(40% 0 40% 0); transform: translate(1px, 2px); }
+            80% { clip-path: inset(0 0 80% 0); transform: translate(-1px, -2px); }
         }
 
         .hero-subtitle {
@@ -285,34 +304,33 @@
             }
         }
 
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
-            flex-wrap: wrap;
+        /* Scarcity Counter */
+        .scarcity-counter {
+            background: rgba(255,0,0,0.1);
+            border: 1px solid rgba(255,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 20px 0;
         }
 
-        .stat-item {
+        .scarcity-counter span {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        #spots-left {
+            font-size: 1.3em;
+            display: inline-block;
+            min-width: 30px;
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* Escape Plan Button */
-        .escape-btn {
+        /* Neon Button */
+        .neon-btn {
             display: inline-block;
             padding: 20px 60px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
             text-decoration: none;
             color: var(--bg-dark);
@@ -327,7 +345,7 @@
             cursor: pointer;
         }
 
-        .escape-btn::before {
+        .neon-btn::before {
             content: '';
             position: absolute;
             top: 50%;
@@ -340,93 +358,560 @@
             transition: width 0.6s, height 0.6s;
         }
 
-        .escape-btn:hover {
+        .neon-btn:hover {
             color: var(--text-primary);
             box-shadow: 0 0 40px var(--primary-color),
                         inset 0 0 20px rgba(0, 255, 136, 0.2);
             transform: translateY(-2px);
         }
 
-        .escape-btn:hover::before {
+        .neon-btn:hover::before {
             width: 300px;
             height: 300px;
         }
 
-        .escape-btn span {
+        .neon-btn span {
             position: relative;
             z-index: 1;
         }
 
-        /* Comparison Section */
-        .comparison-section {
-            padding: 100px 20px;
+        /* Media Logos */
+        .media-section {
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(124, 58, 237, 0.05) 50%, var(--bg-dark) 100%);
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .media-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+            transform: translate(-50%, -50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        .media-carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 30px 0;
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+        }
+        
+        .media-carousel-container::before,
+        .media-carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .media-carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-dark), transparent);
+        }
+        
+        .media-carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-dark), transparent);
+        }
+
+        .media-logos {
+            display: flex;
+            align-items: center;
+            gap: 100px;
+            animation: scroll-left 40s linear infinite;
+            width: fit-content;
+            padding: 0 50px;
+        }
+        
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .media-logos img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            filter: invert(1) grayscale(30%) brightness(0.9);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .media-logos img:hover {
+            filter: invert(1) grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        
+        /* Individual logo size adjustments */
+        .media-logos img[alt="Inc. Magazine"] {
+            transform: scale(0.7);
+        }
+        
+        .media-logos img[alt="Inc. Magazine"]:hover {
+            transform: scale(0.805); /* 0.7 * 1.15 */
+        }
+        
+        .media-logos img[alt="The New York Times"] {
+            transform: scale(1.3);
+        }
+        
+        .media-logos img[alt="The New York Times"]:hover {
+            transform: scale(1.495); /* 1.3 * 1.15 */
+        }
+        
+        .media-logos img[alt="Entrepreneur"] {
+            transform: scale(1.1);
+        }
+        
+        .media-logos img[alt="Entrepreneur"]:hover {
+            transform: scale(1.265); /* 1.1 * 1.15 */
+        }
+        
+        .media-logos img[alt="Bloomberg"] {
+            transform: scale(1.15);
+        }
+        
+        .media-logos img[alt="Bloomberg"]:hover {
+            transform: scale(1.3225); /* 1.15 * 1.15 */
+        }
+        
+        /* Media title styling */
+        .media-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        /* Stripe Button Styling */
+        .stripe-button-container {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .stripe-checkout-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--bg-dark);
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stripe-checkout-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .stripe-checkout-button:active {
+            transform: translateY(0);
+        }
+
+        .stripe-checkout-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .stripe-checkout-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Product CTA buttons - slightly smaller */
+        .product-cta {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Income Calculator */
+        .calculator-section {
+            padding: 150px 20px;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg at 50% 50%,
+                transparent 0deg,
+                var(--primary-color) 60deg,
+                transparent 120deg
+            );
+            animation: rotate 10s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .calculator-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slider-container {
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .custom-slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            position: relative;
+        }
+
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .custom-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 40px var(--primary-color);
+        }
+
+        .income-display {
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .income-amount {
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 80px rgba(0, 255, 136, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 150px 20px;
+            position: relative;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .comparison-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--primary-color);
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .comparison-column {
-            padding: 40px;
+        .product-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .old-way {
-            background: rgba(255, 0, 68, 0.05);
-            border: 1px solid rgba(255, 0, 68, 0.3);
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .new-way {
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.3);
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
         }
 
-        .comparison-column h3 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+        .product-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .old-way h3 {
-            color: var(--danger-color);
-        }
-
-        .new-way h3 {
+        .product-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: var(--primary-color);
         }
 
-        .comparison-list {
+        .product-modules {
             list-style: none;
+            margin: 30px 0;
         }
 
-        .comparison-list li {
+        .product-modules li {
             padding: 10px 0;
+            color: var(--text-secondary);
             position: relative;
             padding-left: 30px;
         }
 
-        .old-way li::before {
-            content: '❌';
+        .product-modules li::before {
+            content: '→';
             position: absolute;
             left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
-        .new-way li::before {
-            content: '✅';
+        /* Success Stories Carousel */
+        .testimonials-section {
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.5), transparent);
+        }
+
+        .testimonials-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+
+        .testimonial-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .testimonial-income {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            padding: 50px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Final CTA Section */
+        .final-cta-section {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(0, 255, 136, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta-section::before {
+            content: '';
             position: absolute;
-            left: 0;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+            opacity: 0.05;
+            animation: rotate 20s linear infinite;
+        }
+
+        .final-cta-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guarantee-text {
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
 
         /* Countdown Timer */
@@ -435,7 +920,7 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
             padding: 15px;
             z-index: 100;
@@ -461,245 +946,12 @@
             color: var(--text-primary);
         }
 
-        /* AI Takeover Timeline */
-        .timeline-section {
-            padding: 100px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .timeline-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 50px;
-            background: linear-gradient(135deg, var(--danger-color), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .timeline {
-            position: relative;
-            padding: 40px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--danger-color), var(--primary-color));
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 50px;
-            display: flex;
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: 45%;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.05);
-            border-color: var(--primary-color);
-        }
-
-        .timeline-date {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-dark);
-            padding: 10px 20px;
-            border: 2px solid var(--primary-color);
-            border-radius: 30px;
-            font-weight: bold;
-        }
-
-        /* Social Proof */
-        .proof-section {
-            padding: 100px 20px;
-            background: rgba(124, 58, 237, 0.05);
-        }
-
-        .proof-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .proof-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .proof-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .proof-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .proof-age {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .proof-income {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .proof-story {
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* The Choice Section */
-        .choice-section {
-            padding: 100px 20px;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .choice-title {
-            font-size: 3rem;
-            margin-bottom: 50px;
-            color: var(--primary-color);
-        }
-
-        .choice-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .choice-card {
-            padding: 40px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .choice-stay {
-            background: rgba(255, 0, 68, 0.05);
-            border: 1px solid rgba(255, 0, 68, 0.3);
-        }
-
-        .choice-escape {
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-        }
-
-        .choice-card h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .choice-stay h3 {
-            color: var(--danger-color);
-        }
-
-        .choice-escape h3 {
-            color: var(--primary-color);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 100px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--primary-color);
-        }
-
-        .faq-item {
-            margin-bottom: 30px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            border-color: var(--primary-color);
-        }
-
-        .faq-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-
-        /* Final CTA */
-        .final-cta {
-            padding: 150px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(0, 255, 136, 0.1));
-        }
-
-        .final-cta h2 {
-            font-size: 4rem;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .price-box {
-            margin: 40px 0;
-        }
-
-        .original-price {
-            font-size: 1.5rem;
-            text-decoration: line-through;
-            opacity: 0.5;
-            margin-bottom: 10px;
-        }
-
-        .current-price {
-            font-size: 3rem;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
         /* Social Proof Popup */
         .social-proof-popup {
             position: fixed;
             bottom: 30px;
             left: 30px;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.9);
             border: 1px solid var(--primary-color);
             border-radius: 15px;
             padding: 20px 30px;
@@ -722,6 +974,136 @@
             }
         }
 
+        .proof-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* Progress Bar Section */
+        .progress-section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .progress-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .progress-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .progress-track {
+            background: rgba(255, 255, 255, 0.1);
+            height: 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 20px;
+            width: 0%;
+            animation: fillProgress 3s ease-out forwards;
+            position: relative;
+        }
+
+        @keyframes fillProgress {
+            to { width: 75%; }
+        }
+
+        .progress-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+            color: var(--bg-dark);
+            z-index: 1;
+        }
+
+        /* Email Popup */
+        #email-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-dark);
+            border: 2px solid var(--primary-color);
+            padding: 40px;
+            border-radius: 20px;
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
+        }
+
+        #email-popup h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        #email-popup input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        #email-popup button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: black;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        #email-popup button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #ff0000, #ff00ff);
+            padding: 15px;
+            text-align: center;
+            z-index: 100;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .cursor, .cursor-follower {
@@ -733,34 +1115,40 @@
             }
             
             .hero-title {
-                font-size: clamp(2rem, 6vw, 3rem);
+                font-size: clamp(2.5rem, 8vw, 4rem);
             }
 
-            .comparison-grid,
-            .choice-grid {
-                grid-template-columns: 1fr;
+            .calculator-container {
+                padding: 40px 20px;
             }
 
-            .timeline-item {
-                flex-direction: column !important;
+            .income-amount {
+                font-size: 3rem;
             }
 
-            .timeline-content {
-                width: 100%;
+            .testimonial-card {
+                min-width: 300px;
             }
 
-            .replacement-counter,
-            .freedom-counter {
-                position: static;
-                margin: 20px;
+            .social-proof-popup {
+                left: 10px;
+                right: 10px;
             }
 
-            .hero-stats {
+            .live-income-counter {
+                top: 60px;
+                left: 10px;
+                right: 10px;
+                padding: 10px 15px;
+            }
+
+            .current-price {
+                font-size: 3rem;
+            }
+
+            .trust-badges {
                 gap: 20px;
-            }
-
-            .stat-number {
-                font-size: 2rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -774,22 +1162,16 @@
     <div class="bg-animation"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Job Replacement Counter -->
-    <div class="replacement-counter">
-        <p data-i18n="jobs-replaced">Jobs Replaced by AI Today</p>
-        <p><span id="jobs-replaced-count">12,847</span></p>
-    </div>
-
-    <!-- Freedom Counter -->
-    <div class="freedom-counter">
-        <p data-i18n="people-escaped">People Who Escaped Today</p>
-        <p><span id="freedom-count">247</span></p>
+    <!-- Student Success Counter -->
+    <div class="live-income-counter">
+        <p data-i18n="active-students">Active Students</p>
+        <p><span id="student-count">2,847</span></p>
     </div>
 
     <!-- Countdown Timer -->
     <div class="countdown-section">
         <div class="countdown-content">
-            <span class="countdown-label" data-i18n="limited-offer">YOUR ESCAPE WINDOW CLOSES IN</span>
+            <span class="countdown-label" data-i18n="limited-spots">LIMITED TIME OFFER - PRICE INCREASES IN</span>
             <span class="countdown-timer" id="countdown">23:59:47</span>
         </div>
     </div>
@@ -805,264 +1187,240 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="warning-badge" data-i18n="warning">⚠️ WARNING: Your Job Has An Expiration Date</div>
-            
             <h1 class="hero-title">
-                <span class="title-line1" data-i18n="hero-line1">Stop Building Someone Else's Dream</span>
-                <span class="title-line2" data-i18n="hero-line2">Start Commanding AI Before It Commands You</span>
+                <span class="glitch" data-text="Your AI Fortune" data-i18n="hero-line1">Your AI Fortune</span><br>
+                <span class="glitch" data-text="Starts Today" data-i18n="hero-line2">Starts Today</span>
             </h1>
-            
             <p class="hero-subtitle" data-i18n="hero-subtitle">
-                Every day you trade hours for wages, you're training your AI replacement. 
-                Time to flip the script.
+                Master AI. Generate Income. Achieve Freedom.
             </p>
-
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">2,847</div>
-                    <div class="stat-label" data-i18n="stat-escaped">Escaped the 9-5</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24</div>
-                    <div class="stat-label" data-i18n="stat-age">Average Age</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$8.4K</div>
-                    <div class="stat-label" data-i18n="stat-income">Avg Monthly Income</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">3hrs</div>
-                    <div class="stat-label" data-i18n="stat-workday">Daily Work Time</div>
-                </div>
-            </div>
-
-            <!-- PayPal Button Container -->
-            <div id="paypal-button-container"></div>
             
-            <p style="margin-top: 20px; opacity: 0.8;" data-i18n="guarantee">
-                🔒 30-Day "Quit Your Job" Guarantee • 📱 Work From Anywhere • 🎯 No Boss, No Limits
-            </p>
-        </div>
-    </section>
 
-    <!-- The Comparison -->
-    <section class="comparison-section">
-        <h2 class="comparison-title" data-i18n="comparison-title">The Choice Is Yours</h2>
-        
-        <div class="comparison-grid">
-            <div class="comparison-column old-way">
-                <h3 data-i18n="old-way">Keep Trading Time for Money</h3>
-                <ul class="comparison-list">
-                    <li data-i18n="old1">Wake up to alarms for 40+ years</li>
-                    <li data-i18n="old2">Ask permission for vacation days</li>
-                    <li data-i18n="old3">Watch inflation eat your raises</li>
-                    <li data-i18n="old4">Train the AI that replaces you</li>
-                    <li data-i18n="old5">Retire broke at 65 (if lucky)</li>
-                    <li data-i18n="old6">Die with regrets</li>
-                </ul>
-            </div>
-            
-            <div class="comparison-column new-way">
-                <h3 data-i18n="new-way">Command Your Own Income</h3>
-                <ul class="comparison-list">
-                    <li data-i18n="new1">Wake up when you want</li>
-                    <li data-i18n="new2">Work from Bali, NYC, or bed</li>
-                    <li data-i18n="new3">Scale income without limits</li>
-                    <li data-i18n="new4">Use AI as your employee</li>
-                    <li data-i18n="new5">Financial freedom by 30</li>
-                    <li data-i18n="new6">Live life on your terms</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div style="text-align: center;">
-            <a href="#pricing" class="escape-btn">
-                <span data-i18n="escape-now">Start My Escape Plan →</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- AI Takeover Timeline -->
-    <section class="timeline-section">
-        <h2 class="timeline-title" data-i18n="timeline-title">The Clock Is Ticking</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>2024: The Warning Signs</h3>
-                    <p>Customer service, data entry, basic coding - all automated. 
-                    "Entry level" jobs disappearing. Your boss calls it "efficiency."</p>
-                </div>
-                <div class="timeline-date">NOW</div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>2025: The Acceleration</h3>
-                    <p>Middle management, accounting, legal research - AI doing it better, 
-                    faster, cheaper. Your LinkedIn feed full of "looking for opportunities."</p>
-                </div>
-                <div class="timeline-date">12 MONTHS</div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>2026: The Great Replacement</h3>
-                    <p>50% of white-collar jobs gone. Those who command AI thrive. 
-                    Those who didn't... compete for the scraps.</p>
-                </div>
-                <div class="timeline-date">24 MONTHS</div>
+            <!-- Stripe Checkout Button -->
+            <div id="stripe-checkout-hero" class="stripe-button-container">
+                <button class="stripe-checkout-button" data-i18n="cta-hero">Start Your AI Journey Today</button>
             </div>
         </div>
     </section>
 
-    <!-- Social Proof -->
-    <section class="proof-section">
-        <h2 style="text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary-color);" 
-            data-i18n="proof-title">They Escaped. So Can You.</h2>
+    <!-- Media Section -->
+    <section class="media-section">
+        <p class="media-title" data-i18n="featured-in">As Featured In</p>
+        <div class="media-carousel-container">
+            <div class="media-logos">
+                <!-- First set of logos -->
+                <img src="images/media-logos/forbes.png" alt="Forbes" />
+                <img src="images/media-logos/techcrunch.png" alt="TechCrunch" />
+                <img src="images/media-logos/entrepreneur.png" alt="Entrepreneur" />
+                <img src="images/media-logos/wired.png" alt="WIRED" />
+                <img src="images/media-logos/inc.png" alt="Inc. Magazine" />
+                <img src="images/media-logos/bloomberg.png" alt="Bloomberg" />
+                <img src="images/media-logos/NYT.png" alt="The New York Times" />
+                <img src="images/media-logos/wsj.png" alt="The Wall Street Journal" />
+                <!-- Duplicate set for seamless loop -->
+                <img src="images/media-logos/forbes.png" alt="Forbes" />
+                <img src="images/media-logos/techcrunch.png" alt="TechCrunch" />
+                <img src="images/media-logos/entrepreneur.png" alt="Entrepreneur" />
+                <img src="images/media-logos/wired.png" alt="WIRED" />
+                <img src="images/media-logos/inc.png" alt="Inc. Magazine" />
+                <img src="images/media-logos/bloomberg.png" alt="Bloomberg" />
+                <img src="images/media-logos/NYT.png" alt="The New York Times" />
+                <img src="images/media-logos/wsj.png" alt="The Wall Street Journal" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="testimonials-section">
+        <h2 class="testimonials-title" data-i18n="success-title">Success Stories</h2>
         
-        <div class="proof-grid">
-            <div class="proof-card">
-                <div class="proof-header">
-                    <strong>Sarah M.</strong>
-                    <span class="proof-age">Age 23</span>
-                </div>
-                <div class="proof-income">$8,420/month</div>
-                <p class="proof-story" data-i18n="proof1">
-                    "Was making $18/hour serving coffee to executives. Now I make more 
-                    in a day than they pay their assistants in a week. Using their 
-                    same AI tools. The irony is delicious."
+        <div class="testimonial-carousel" id="testimonial-carousel">
+            <div class="testimonial-card">
+                <div class="testimonial-income">$12,847/month</div>
+                <p class="testimonial-text" data-i18n="testimonial1">
+                    "The AI strategies completely transformed my income. I went from zero to five figures in just 3 months!"
                 </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <strong>Sarah Chen</strong><br>
+                        <span style="color: var(--text-secondary);" data-i18n="location1">San Francisco, CA</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="proof-card">
-                <div class="proof-header">
-                    <strong>Marcus K.</strong>
-                    <span class="proof-age">Age 26</span>
-                </div>
-                <div class="proof-income">$12,300/month</div>
-                <p class="proof-story" data-i18n="proof2">
-                    "5 years of college. $80K in debt. Making $45K at a 'good job.' 
-                    Quit after 2 months with AI Wealth. Now my old boss asks ME for advice."
+            <div class="testimonial-card">
+                <div class="testimonial-income">$8,392/month</div>
+                <p class="testimonial-text" data-i18n="testimonial2">
+                    "I never thought I could make money with AI. This course proved me wrong. Now I work 2 hours a day!"
                 </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <strong>Marcus Johnson</strong><br>
+                        <span style="color: var(--text-secondary);" data-i18n="location2">Austin, TX</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="proof-card">
-                <div class="proof-header">
-                    <strong>Jennifer L.</strong>
-                    <span class="proof-age">Age 22</span>
-                </div>
-                <div class="proof-income">$6,200/month</div>
-                <p class="proof-story" data-i18n="proof3">
-                    "Parents said 'get a stable job.' I showed them my bank account. 
-                    Now they're asking me to teach them. GenZ isn't lazy - we just 
-                    refuse to be slaves."
+            <div class="testimonial-card">
+                <div class="testimonial-income">$15,293/month</div>
+                <p class="testimonial-text" data-i18n="testimonial3">
+                    "The prompt templates alone paid for the course 100x over. This is the future of online business!"
                 </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <strong>Lisa Park</strong><br>
+                        <span style="color: var(--text-secondary);" data-i18n="location3">New York, NY</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- The Choice -->
-    <section class="choice-section">
-        <h2 class="choice-title" data-i18n="choice-title">Two Paths. One Choice. Your Future.</h2>
+    <!-- CTA After Success Stories -->
+    <div class="stripe-button-container">
+        <button id="stripe-checkout-testimonials" class="stripe-checkout-button" data-i18n="cta-testimonials">Join 2,847+ Successful Students</button>
+    </div>
+
+    <!-- Income Calculator -->
+    <section class="calculator-section" id="calculator">
+        <div class="calculator-container">
+            <h2 class="calculator-title" data-i18n="calc-title">Calculate Your Potential</h2>
+            
+            <div class="slider-container">
+                <label style="font-size: 1.2rem; display: block; margin-bottom: 20px;">
+                    <span data-i18n="hours-label">Hours per day:</span> 
+                    <span id="hours-display" style="color: var(--primary-color); font-weight: bold;">2</span>
+                </label>
+                <input type="range" class="custom-slider" id="hours-slider" min="1" max="8" value="2">
+            </div>
+            
+            <div class="income-display">
+                <p style="font-size: 1.2rem; margin-bottom: 10px;" data-i18n="monthly-income">Monthly Income Potential</p>
+                <div class="income-amount"><span id="currency-symbol">$</span><span id="income-value">4,000</span></div>
+            </div>
+            
+            <!-- Stripe Button in Calculator -->
+            <div class="stripe-button-container" style="margin-top: 40px;">
+                <button id="stripe-checkout-calculator" class="stripe-checkout-button">
+                    <span data-i18n="cta-calculator-prefix">Start Earning</span> 
+                    <span id="calculator-amount">$4,000</span>
+                    <span data-i18n="cta-calculator-suffix">/month</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h2 style="font-size: 3rem; text-align: center; margin-bottom: 80px;" data-i18n="products-title">
+            Your Path to $10K/Month
+        </h2>
         
-        <div class="choice-grid">
-            <div class="choice-card choice-stay">
-                <h3 data-i18n="path1">Path 1: Stay Comfortable</h3>
-                <ul style="text-align: left; list-style: none;">
-                    <li>✓ Keep your "stable" job</li>
-                    <li>✓ Hope AI doesn't replace you</li>
-                    <li>✓ Trade time for money until 65</li>
-                    <li>✓ Watch others live your dreams</li>
-                    <li>✓ Wonder "what if?"</li>
+        <div class="products-grid">
+            <div class="product-card">
+                <h3 class="product-title" data-i18n="course-title">AI Mastery Course</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;" data-i18n="course-desc">
+                    Step-by-step modules for beginners
+                </p>
+                <ul class="product-modules">
+                    <li data-i18n="module1">AI Basics: Your First $100</li>
+                    <li data-i18n="module2">Scaling to $1K/Month with AI Tools</li>
+                    <li data-i18n="module3">The $10K Blueprint: Advanced Strategies</li>
                 </ul>
+                <div class="stripe-button-container" style="margin-top: 30px;">
+                    <button id="stripe-checkout-course" class="stripe-checkout-button product-cta">Start Learning Today</button>
+                </div>
             </div>
             
-            <div class="choice-card choice-escape">
-                <h3 data-i18n="path2">Path 2: Take Control</h3>
-                <ul style="text-align: left; list-style: none;">
-                    <li>✓ Master AI in 30 days</li>
-                    <li>✓ Build your own income</li>
-                    <li>✓ Work 3 hours, earn 8 hours pay</li>
-                    <li>✓ Answer to nobody</li>
-                    <li>✓ Live life on your terms</li>
+            <div class="product-card">
+                <h3 class="product-title" data-i18n="vault-title">Prompt Template Vault</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;" data-i18n="vault-desc">
+                    Ready-to-use AI prompts for instant income
+                </p>
+                <ul class="product-modules">
+                    <li data-i18n="vault1">Content Creation Business Templates</li>
+                    <li data-i18n="vault2">AI Consulting Service Prompts</li>
+                    <li data-i18n="vault3">Automated Income Stream Builders</li>
                 </ul>
+                <div class="stripe-button-container" style="margin-top: 30px;">
+                    <button id="stripe-checkout-vault" class="stripe-checkout-button product-cta">Get The Templates</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-badges">
+            <div class="trust-badge">🔒 SSL Secure Checkout</div>
+            <div class="trust-badge">✅ 30-Day Money Back Guarantee</div>
+            <div class="trust-badge">👥 2,847 Active Students</div>
+            <div class="trust-badge">⭐ 4.9/5 Average Rating</div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <h2 class="final-cta-title" data-i18n="final-cta-title">Ready to Start Your AI Success Story?</h2>
+        <p class="final-cta-subtitle" data-i18n="final-cta-subtitle">Join thousands who are already earning with AI</p>
+        <div class="stripe-button-container">
+            <button id="stripe-checkout-final" class="stripe-checkout-button" data-i18n="cta-final">Secure Your Spot Now</button>
+        </div>
+        <p class="guarantee-text" data-i18n="guarantee">🔒 30-Day Money-Back Guarantee • Secure Checkout</p>
+    </section>
+
+    <!-- FAQ Section -->
     <section class="faq-section">
-        <h2 class="faq-title" data-i18n="faq-title">Real Questions. Real Answers.</h2>
+        <h2 class="faq-title" data-i18n="faq-title">Frequently Asked Questions</h2>
         
         <div class="faq-item">
-            <h3 data-i18n="faq1-q">"But I don't know anything about AI..."</h3>
-            <p data-i18n="faq1-a">
-                Perfect. Neither did our top earners 60 days ago. You grew up with 
-                smartphones - AI is easier. Your boss struggles with email. Who has 
-                the real advantage?
-            </p>
+            <h3 data-i18n="faq1-q">Do I need any technical skills?</h3>
+            <p data-i18n="faq1-a">No! If you can write an email, you can use AI to generate income. Our step-by-step system works for complete beginners.</p>
         </div>
         
         <div class="faq-item">
-            <h3 data-i18n="faq2-q">"What if I fail?"</h3>
-            <p data-i18n="faq2-a">
-                What if you don't try? In 5 years, you'll either command AI or be 
-                commanded by it. Failure is staying where you are, watching opportunities 
-                pass while building someone else's empire.
-            </p>
+            <h3 data-i18n="faq2-q">How quickly can I start earning?</h3>
+            <p data-i18n="faq2-a">Most students report their first income within 7-14 days. Some have made their first $100 within 48 hours of starting.</p>
         </div>
         
         <div class="faq-item">
-            <h3 data-i18n="faq3-q">"Is this actually real?"</h3>
-            <p data-i18n="faq3-a">
-                Ask the 2,847 people who quit their jobs last month. Ask Sarah making 
-                $8K/month at 23. Ask yourself why your company is suddenly so interested 
-                in "AI integration." The future is here. Pick your side.
-            </p>
+            <h3 data-i18n="faq3-q">What if it doesn't work for me?</h3>
+            <p data-i18n="faq3-a">We offer a 30-day money-back guarantee. If you don't see results, we'll refund every penny. Zero risk.</p>
         </div>
         
         <div class="faq-item">
-            <h3 data-i18n="faq4-q">"My parents say I need a stable job..."</h3>
-            <p data-i18n="faq4-a">
-                Your parents' advice was perfect... for 1990. They worked one job for 
-                30 years. You'll have 30 jobs in one year if you follow their path. 
-                Love them, but don't let their fears limit your future.
+            <h3 data-i18n="faq4-q">How much time do I need to invest?</h3>
+            <p data-i18n="faq4-a">Most successful students work 2-4 hours per day. The AI tools do most of the heavy lifting for you.</p>
+        </div>
+    </section>
+
+    <!-- Progress Bar Section -->
+    <section class="progress-section">
+        <div class="progress-container">
+            <h2 class="progress-title" data-i18n="progress-title">Distance to Financial Freedom</h2>
+            <div class="progress-track">
+                <div class="progress-fill">
+                    <span class="progress-label" data-i18n="progress-label">75% THERE</span>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2rem; color: var(--text-secondary);" data-i18n="progress-text">
+                You're closer than you think. Take the leap today.
             </p>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta" id="pricing">
-        <h2 data-i18n="final-title">Your Escape Starts Now</h2>
-        <p style="font-size: 1.5rem; margin-bottom: 40px; opacity: 0.9;" data-i18n="final-subtitle">
-            Or keep making someone else rich. Your choice.
-        </p>
-        
-        <div class="price-box">
-            <p class="original-price" data-i18n="original-price">Regular Price: $997</p>
-            <p class="current-price" data-i18n="today-price">Today Only: $497</p>
-        </div>
-        
-        <!-- PayPal Button Container -->
-        <div id="paypal-button-container-2"></div>
-        
-        <p style="margin-top: 30px; opacity: 0.8;">
-            <strong data-i18n="guarantee-title">The "Quit Your Job" Guarantee:</strong><br>
-            <span data-i18n="guarantee-text">
-                If you don't make your investment back in 30 days, we'll refund 
-                every penny. That's how confident we are. Your boss can't offer that.
-            </span>
-        </p>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer style="background: #000; padding: 80px 20px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <h3 style="font-size: 2rem; margin-bottom: 40px; color: var(--primary-color);" 
-            data-i18n="footer-cta">Stop Building Their Dream. Start Living Yours.</h3>
+        <h3 style="font-size: 2rem; margin-bottom: 40px; color: var(--primary-color);">
+            Ready to Transform Your Life?
+        </h3>
         
         <!-- PayPal Button Container -->
-        <div id="paypal-button-container-3" style="margin-bottom: 50px;"></div>
+        <div id="paypal-button-container-5" style="margin-bottom: 50px;"></div>
         
         <!-- Language Switcher -->
         <div class="lang-switcher">
@@ -1075,11 +1433,11 @@
         </div>
         
         <p style="margin-top: 40px; color: var(--text-secondary); font-size: 0.9rem;">
-            © 2025 AI Wealth Accelerator. Time to choose your side.<br>
+            © 2025 AI Fortune Academy. All rights reserved.<br>
             <span style="margin-top: 10px; display: block;">
                 <a href="blog.html" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Blog</a> |
-                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Terms</a> |
-                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Privacy</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Privacy Policy</a> |
+                <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Terms of Service</a> |
                 <a href="#" style="color: var(--text-secondary); text-decoration: none; margin: 0 10px;">Contact</a>
             </span>
         </p>
@@ -1087,181 +1445,196 @@
 
     <!-- Social Proof Popup -->
     <div class="social-proof-popup" id="social-proof">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 50%;"></div>
-            <div>
-                <strong id="proof-name">Mike from Austin</strong><br>
-                <span style="color: var(--text-secondary);" data-i18n="just-escaped">just quit their job! 🎉</span>
-            </div>
+        <div class="proof-avatar"></div>
+        <div>
+            <strong id="proof-name">John from Texas</strong><br>
+            <span style="color: var(--text-secondary);" data-i18n="just-enrolled">just enrolled!</span>
         </div>
     </div>
 
-    <!-- Configuration -->
-    <script src="config.js"></script>
-    
-    <!-- PayPal SDK (loaded dynamically after config) -->
-    <script>
-        // Dynamically load PayPal SDK with config
-        const paypalScript = document.createElement('script');
-        paypalScript.src = `https://www.paypal.com/sdk/js?client-id=${window.AIWealthConfig.paypal.clientId}&currency=${window.AIWealthConfig.paypal.currency}`;
-        paypalScript.onload = function() {
-            // Initialize PayPal after SDK loads
-            if (window.initPayPal) {
-                window.initPayPal();
-            }
-        };
-        document.head.appendChild(paypalScript);
-    </script>
+    <!-- Email Capture Popup -->
+    <div id="email-popup">
+        <span class="close-popup" onclick="document.getElementById('email-popup').style.display='none'">×</span>
+        <h3 data-i18n="wait-dont-leave">Wait! Don't Leave Empty-Handed</h3>
+        <p data-i18n="free-guide">Get our FREE "5 AI Prompts That Generate $100/Day" guide</p>
+        <input type="email" placeholder="Enter your email" data-i18n-placeholder="enter-email">
+        <button onclick="alert('Thank you! Check your email for the guide.'); document.getElementById('email-popup').style.display='none';">
+            <span data-i18n="send-guide">Send Me The Guide</span>
+        </button>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;" data-i18n="privacy">
+            We respect your privacy. Unsubscribe anytime.
+        </p>
+    </div>
+
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        🔥 SPECIAL OFFER EXPIRES IN <span id="bottom-countdown">23:59:47</span> - SAVE $500 TODAY
+    </div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR-PAYPAL-CLIENT-ID&currency=USD"></script>
 
     <script>
         // Multi-language translations
         const translations = {
             en: {
-                'jobs-replaced': 'Jobs Replaced by AI Today',
-                'people-escaped': 'People Who Escaped Today',
-                'limited-offer': 'YOUR ESCAPE WINDOW CLOSES IN',
-                'warning': '⚠️ WARNING: Your Job Has An Expiration Date',
-                'hero-line1': 'Stop Building Someone Else\'s Dream',
-                'hero-line2': 'Start Commanding AI Before It Commands You',
-                'hero-subtitle': 'Every day you trade hours for wages, you\'re training your AI replacement. Time to flip the script.',
-                'stat-escaped': 'Escaped the 9-5',
-                'stat-age': 'Average Age',
-                'stat-income': 'Avg Monthly Income',
-                'stat-workday': 'Daily Work Time',
-                'guarantee': '🔒 30-Day "Quit Your Job" Guarantee • 📱 Work From Anywhere • 🎯 No Boss, No Limits',
-                'comparison-title': 'The Choice Is Yours',
-                'old-way': 'Keep Trading Time for Money',
-                'old1': 'Wake up to alarms for 40+ years',
-                'old2': 'Ask permission for vacation days',
-                'old3': 'Watch inflation eat your raises',
-                'old4': 'Train the AI that replaces you',
-                'old5': 'Retire broke at 65 (if lucky)',
-                'old6': 'Die with regrets',
-                'new-way': 'Command Your Own Income',
-                'new1': 'Wake up when you want',
-                'new2': 'Work from Bali, NYC, or bed',
-                'new3': 'Scale income without limits',
-                'new4': 'Use AI as your employee',
-                'new5': 'Financial freedom by 30',
-                'new6': 'Live life on your terms',
-                'escape-now': 'Start My Escape Plan →',
-                'timeline-title': 'The Clock Is Ticking',
-                'proof-title': 'They Escaped. So Can You.',
-                'proof1': '"Was making $18/hour serving coffee to executives. Now I make more in a day than they pay their assistants in a week. Using their same AI tools. The irony is delicious."',
-                'proof2': '"5 years of college. $80K in debt. Making $45K at a \'good job.\' Quit after 2 months with AI Wealth. Now my old boss asks ME for advice."',
-                'proof3': '"Parents said \'get a stable job.\' I showed them my bank account. Now they\'re asking me to teach them. GenZ isn\'t lazy - we just refuse to be slaves."',
-                'choice-title': 'Two Paths. One Choice. Your Future.',
-                'path1': 'Path 1: Stay Comfortable',
-                'path2': 'Path 2: Take Control',
-                'faq-title': 'Real Questions. Real Answers.',
-                'faq1-q': '"But I don\'t know anything about AI..."',
-                'faq1-a': 'Perfect. Neither did our top earners 60 days ago. You grew up with smartphones - AI is easier. Your boss struggles with email. Who has the real advantage?',
-                'faq2-q': '"What if I fail?"',
-                'faq2-a': 'What if you don\'t try? In 5 years, you\'ll either command AI or be commanded by it. Failure is staying where you are, watching opportunities pass while building someone else\'s empire.',
-                'faq3-q': '"Is this actually real?"',
-                'faq3-a': 'Ask the 2,847 people who quit their jobs last month. Ask Sarah making $8K/month at 23. Ask yourself why your company is suddenly so interested in "AI integration." The future is here. Pick your side.',
-                'faq4-q': '"My parents say I need a stable job..."',
-                'faq4-a': 'Your parents\' advice was perfect... for 1990. They worked one job for 30 years. You\'ll have 30 jobs in one year if you follow their path. Love them, but don\'t let their fears limit your future.',
-                'final-title': 'Your Escape Starts Now',
-                'final-subtitle': 'Or keep making someone else rich. Your choice.',
-                'original-price': 'Regular Price: $997',
+                'active-students': 'Active Students',
+                'limited-spots': 'LIMITED TIME OFFER - PRICE INCREASES IN',
+                'hero-line1': 'Your AI Fortune',
+                'hero-line2': 'Starts Today',
+                'hero-subtitle': 'Master AI. Generate Income. Achieve Freedom.',
+                'featured-in': 'As Featured In',
+                'limited-offer': 'Limited Time Offer',
+                'regular-price': 'Regular Price: $997',
                 'today-price': 'Today Only: $497',
-                'guarantee-title': 'The "Quit Your Job" Guarantee:',
-                'guarantee-text': 'If you don\'t make your investment back in 30 days, we\'ll refund every penny. That\'s how confident we are. Your boss can\'t offer that.',
-                'footer-cta': 'Stop Building Their Dream. Start Living Yours.',
-                'just-escaped': 'just quit their job! 🎉'
+                'calc-title': 'Calculate Your Potential',
+                'hours-label': 'Hours per day:',
+                'monthly-income': 'Monthly Income Potential',
+                'products-title': 'Your Path to $10K/Month',
+                'course-title': 'AI Mastery Course',
+                'course-desc': 'Step-by-step modules for beginners',
+                'module1': 'AI Basics: Your First $100',
+                'module2': 'Scaling to $1K/Month with AI Tools',
+                'module3': 'The $10K Blueprint: Advanced Strategies',
+                'vault-title': 'Prompt Template Vault',
+                'vault-desc': 'Ready-to-use AI prompts for instant income',
+                'vault1': 'Content Creation Business Templates',
+                'vault2': 'AI Consulting Service Prompts',
+                'vault3': 'Automated Income Stream Builders',
+                'success-title': 'Success Stories',
+                'testimonial1': 'The AI strategies completely transformed my income. I went from zero to five figures in just 3 months!',
+                'testimonial2': 'I never thought I could make money with AI. This course proved me wrong. Now I work 2 hours a day!',
+                'testimonial3': 'The prompt templates alone paid for the course 100x over. This is the future of online business!',
+                'location1': 'San Francisco, CA',
+                'location2': 'Austin, TX',
+                'location3': 'New York, NY',
+                'faq-title': 'Frequently Asked Questions',
+                'faq1-q': 'Do I need any technical skills?',
+                'faq1-a': 'No! If you can write an email, you can use AI to generate income. Our step-by-step system works for complete beginners.',
+                'faq2-q': 'How quickly can I start earning?',
+                'faq2-a': 'Most students report their first income within 7-14 days. Some have made their first $100 within 48 hours of starting.',
+                'faq3-q': 'What if it doesn\'t work for me?',
+                'faq3-a': 'We offer a 30-day money-back guarantee. If you don\'t see results, we\'ll refund every penny. Zero risk.',
+                'faq4-q': 'How much time do I need to invest?',
+                'faq4-a': 'Most successful students work 2-4 hours per day. The AI tools do most of the heavy lifting for you.',
+                'progress-title': 'Distance to Financial Freedom',
+                'progress-label': '75% THERE',
+                'progress-text': 'You\'re closer than you think. Take the leap today.',
+                'just-enrolled': 'just enrolled!',
+                'wait-dont-leave': 'Wait! Don\'t Leave Empty-Handed',
+                'free-guide': 'Get our FREE "5 AI Prompts That Generate $100/Day" guide',
+                'enter-email': 'Enter your email',
+                'send-guide': 'Send Me The Guide',
+                'privacy': 'We respect your privacy. Unsubscribe anytime.'
             },
             ja: {
-                'jobs-replaced': '本日AIに置き換えられた仕事',
-                'people-escaped': '本日脱出した人数',
-                'limited-offer': '脱出の窓が閉まるまで',
-                'warning': '⚠️ 警告：あなたの仕事には有効期限があります',
-                'hero-line1': '他人の夢を築くのをやめよう',
-                'hero-line2': 'AIに支配される前に、AIを支配せよ',
-                'hero-subtitle': '毎日時間を賃金と交換するたび、あなたはAIの代替品を訓練している。脚本を書き換える時だ。',
-                'stat-escaped': '9-5から脱出',
-                'stat-age': '平均年齢',
-                'stat-income': '平均月収',
-                'stat-workday': '1日の作業時間',
-                'guarantee': '🔒 30日間「仕事を辞める」保証 • 📱 どこからでも仕事 • 🎯 上司なし、制限なし',
-                'comparison-title': '選択はあなた次第',
-                'old-way': '時間をお金と交換し続ける',
-                'old1': '40年以上目覚ましで起きる',
-                'old2': '休暇の許可を求める',
-                'old3': 'インフレが昇給を食い尽くすのを見る',
-                'old4': 'あなたを置き換えるAIを訓練する',
-                'old5': '65歳で貧乏に引退（運が良ければ）',
-                'old6': '後悔とともに死ぬ',
-                'new-way': '自分の収入をコントロール',
-                'new1': '好きな時に起きる',
-                'new2': 'バリ、NYC、またはベッドから仕事',
-                'new3': '収入を無制限に拡大',
-                'new4': 'AIを従業員として使用',
-                'new5': '30歳までに経済的自由',
-                'new6': '自分の条件で人生を生きる',
-                'escape-now': '脱出計画を開始 →',
-                'timeline-title': '時計は刻々と進んでいる',
-                'proof-title': '彼らは脱出した。あなたもできる。',
-                'proof1': '「幹部にコーヒーを出して時給18ドルだった。今は彼らがアシスタントに週給で払う額を1日で稼ぐ。同じAIツールを使って。皮肉が美味しい。」',
-                'proof2': '「大学5年。借金8万ドル。「良い仕事」で年収4万5千ドル。AI Wealthで2ヶ月後に辞めた。今は元上司が私にアドバイスを求めてくる。」',
-                'proof3': '「両親は「安定した仕事に就け」と言った。銀行口座を見せたら、今は教えてくれと頼んでくる。Z世代は怠け者じゃない - 奴隷になることを拒否しているだけ。」',
-                'just-escaped': 'が仕事を辞めました！ 🎉'
+                'active-students': 'アクティブな生徒数',
+                'limited-spots': '期間限定オファー - 値上げまで',
+                'hero-line1': 'AIで富を築く',
+                'hero-line2': '今日から始まる',
+                'hero-subtitle': 'AIをマスター。収入を生成。自由を実現。',
+                'featured-in': '掲載メディア',
+                'limited-offer': '期間限定オファー',
+                'regular-price': '通常価格：¥149,550',
+                'today-price': '本日限定：¥74,550',
+                'calc-title': 'あなたの可能性を計算',
+                'hours-label': '1日の作業時間：',
+                'monthly-income': '月収の可能性',
+                'products-title': '月収150万円への道',
+                'course-title': 'AIマスタリーコース',
+                'course-desc': '初心者向けステップバイステップモジュール',
+                'module1': 'AI基礎：最初の1万5千円',
+                'module2': 'AIツールで月15万円へスケール',
+                'module3': '150万円の設計図：上級戦略',
+                'vault-title': 'プロンプトテンプレート保管庫',
+                'vault-desc': 'すぐに使えるAIプロンプト',
+                'vault1': 'コンテンツ作成ビジネステンプレート',
+                'vault2': 'AIコンサルティングサービスプロンプト',
+                'vault3': '自動収入ストリームビルダー',
+                'success-title': '成功事例',
+                'testimonial1': 'AI戦略が私の収入を完全に変えました。たった3ヶ月でゼロから5桁の収入に！',
+                'testimonial2': 'AIでお金を稼げるとは思いませんでした。このコースが間違いを証明しました。今は1日2時間働いています！',
+                'testimonial3': 'プロンプトテンプレートだけでコース代金の100倍以上の価値がありました。これがオンラインビジネスの未来です！',
+                'location1': 'サンフランシスコ、CA',
+                'location2': 'オースティン、TX',
+                'location3': 'ニューヨーク、NY',
+                'faq-title': 'よくある質問',
+                'faq1-q': '技術的なスキルは必要ですか？',
+                'faq1-a': 'いいえ！メールが書ければ、AIを使って収入を生み出せます。完全な初心者向けのステップバイステップシステムです。',
+                'faq2-q': 'どのくらい早く稼ぎ始められますか？',
+                'faq2-a': 'ほとんどの生徒は7〜14日以内に最初の収入を報告しています。開始から48時間以内に最初の1万5千円を稼いだ人もいます。',
+                'faq3-q': 'うまくいかなかったらどうなりますか？',
+                'faq3-a': '30日間の返金保証を提供しています。結果が出なければ、全額返金します。リスクゼロです。',
+                'faq4-q': 'どのくらいの時間を投資する必要がありますか？',
+                'faq4-a': '成功している生徒のほとんどは1日2〜4時間働いています。AIツールがほとんどの重い作業をしてくれます。',
+                'progress-title': '経済的自由までの距離',
+                'progress-label': '75%達成',
+                'progress-text': 'あなたが思っているより近くにいます。今日、飛躍しましょう。',
+                'just-enrolled': 'が登録しました！',
+                'wait-dont-leave': 'お待ちください！手ぶらで帰らないでください',
+                'free-guide': '無料の「1日1万5千円を生み出す5つのAIプロンプト」ガイドを入手',
+                'enter-email': 'メールアドレスを入力',
+                'send-guide': 'ガイドを送る',
+                'privacy': 'プライバシーを尊重します。いつでも購読解除できます。'
             },
             ko: {
-                'jobs-replaced': '오늘 AI로 대체된 일자리',
-                'people-escaped': '오늘 탈출한 사람들',
-                'limited-offer': '탈출 기회가 닫히기까지',
-                'warning': '⚠️ 경고: 당신의 직업에는 유효기간이 있습니다',
-                'hero-line1': '남의 꿈 만들기를 멈추세요',
-                'hero-line2': 'AI가 당신을 지배하기 전에 AI를 지배하세요',
-                'hero-subtitle': '시간을 임금과 교환할 때마다 당신은 AI 대체품을 훈련시키고 있습니다. 판을 뒤집을 때입니다.',
-                'stat-escaped': '9-5 탈출',
-                'stat-age': '평균 연령',
-                'stat-income': '평균 월수입',
-                'stat-workday': '일일 근무 시간',
-                'just-escaped': '님이 퇴사했습니다! 🎉'
+                'active-students': '활동 중인 학생',
+                'limited-spots': '한정 시간 혜택 - 가격 인상까지',
+                'hero-line1': 'AI로 부를 쌓다',
+                'hero-line2': '오늘 시작하세요',
+                'hero-subtitle': 'AI 마스터. 수입 창출. 자유 달성.',
+                'regular-price': '정가: ₩1,292,200',
+                'today-price': '오늘만: ₩646,100',
+                'faq1-q': '기술적인 기술이 필요한가요?',
+                'faq1-a': '아니요! 이메일을 쓸 수 있다면 AI를 사용하여 수입을 창출할 수 있습니다. 완전 초보자를 위한 단계별 시스템입니다.',
+                'faq2-q': '얼마나 빨리 수익을 올릴 수 있나요?',
+                'faq2-a': '대부분의 학생들은 7-14일 이내에 첫 수입을 보고합니다. 일부는 시작 후 48시간 이내에 첫 13만원을 벌었습니다.',
+                'faq3-q': '나에게 효과가 없으면 어떻게 되나요?',
+                'faq3-a': '30일 환불 보장을 제공합니다. 결과가 나타나지 않으면 전액 환불해 드립니다. 위험 제로입니다.',
+                'faq4-q': '얼마나 많은 시간을 투자해야 하나요?',
+                'faq4-a': '성공한 학생들 대부분은 하루 2-4시간 일합니다. AI 도구가 대부분의 무거운 작업을 대신해줍니다.'
             },
             'zh-tw': {
-                'jobs-replaced': '今日被AI取代的工作',
-                'people-escaped': '今日逃脫的人數',
-                'limited-offer': '你的逃脫窗口關閉倒數',
-                'warning': '⚠️ 警告：你的工作有保質期',
-                'hero-line1': '停止建造別人的夢想',
-                'hero-line2': '在AI指揮你之前先指揮AI',
-                'hero-subtitle': '每天用時間換工資，你都在訓練你的AI替代品。是時候翻轉劇本了。',
-                'stat-escaped': '逃離朝九晚五',
-                'stat-age': '平均年齡',
-                'stat-income': '平均月收入',
-                'stat-workday': '每日工作時間',
-                'just-escaped': '剛剛辭職了！ 🎉'
+                'active-students': '活躍學生',
+                'limited-spots': '限時優惠 - 價格上漲倒數',
+                'regular-price': '原價：NT$30,814',
+                'today-price': '今日特價：NT$15,407',
+                'faq1-q': '我需要任何技術技能嗎？',
+                'faq1-a': '不需要！如果你會寫電子郵件，你就能使用AI來創造收入。我們的逐步系統適合完全的初學者。',
+                'faq2-q': '我能多快開始賺錢？',
+                'faq2-a': '大多數學生在7-14天內報告他們的第一筆收入。有些人在開始後48小時內就賺到了第一個3000元。',
+                'faq3-q': '如果對我沒用怎麼辦？',
+                'faq3-a': '我們提供30天退款保證。如果你看不到結果，我們將退還每一分錢。零風險。',
+                'faq4-q': '我需要投入多少時間？',
+                'faq4-a': '大多數成功的學生每天工作2-4小時。AI工具為你完成大部分繁重的工作。'
             },
             'es-mx': {
-                'jobs-replaced': 'Trabajos Reemplazados por IA Hoy',
-                'people-escaped': 'Personas que Escaparon Hoy',
-                'limited-offer': 'TU VENTANA DE ESCAPE CIERRA EN',
-                'warning': '⚠️ ADVERTENCIA: Tu Trabajo Tiene Fecha de Caducidad',
-                'hero-line1': 'Deja de Construir el Sueño de Otro',
-                'hero-line2': 'Comanda la IA Antes de que Te Comande',
-                'hero-subtitle': 'Cada día que cambias horas por salario, estás entrenando a tu reemplazo de IA. Es hora de cambiar el guión.',
-                'stat-escaped': 'Escaparon del 9-5',
-                'stat-age': 'Edad Promedio',
-                'stat-income': 'Ingreso Mensual Promedio',
-                'stat-workday': 'Tiempo de Trabajo Diario',
-                'just-escaped': '¡acaba de renunciar! 🎉'
+                'active-students': 'Estudiantes Activos',
+                'limited-spots': 'OFERTA POR TIEMPO LIMITADO - EL PRECIO AUMENTA EN',
+                'regular-price': 'Precio Regular: $16,898 MXN',
+                'today-price': 'Solo Hoy: $8,449 MXN',
+                'faq1-q': '¿Necesito habilidades técnicas?',
+                'faq1-a': '¡No! Si puedes escribir un correo electrónico, puedes usar IA para generar ingresos. Nuestro sistema paso a paso funciona para principiantes completos.',
+                'faq2-q': '¿Qué tan rápido puedo empezar a ganar?',
+                'faq2-a': 'La mayoría de los estudiantes reportan sus primeros ingresos dentro de 7-14 días. Algunos han ganado sus primeros $1,700 MXN dentro de las 48 horas de comenzar.',
+                'faq3-q': '¿Qué pasa si no funciona para mí?',
+                'faq3-a': 'Ofrecemos una garantía de devolución de dinero de 30 días. Si no ves resultados, te devolvemos cada peso. Cero riesgo.',
+                'faq4-q': '¿Cuánto tiempo necesito invertir?',
+                'faq4-a': 'La mayoría de los estudiantes exitosos trabajan 2-4 horas por día. Las herramientas de IA hacen la mayor parte del trabajo pesado por ti.'
             },
             tl: {
-                'jobs-replaced': 'Trabahong Napalitan ng AI Ngayon',
-                'people-escaped': 'Taong Nakatakas Ngayon',
-                'limited-offer': 'MAGSASARA NA ANG ESCAPE WINDOW MO SA',
-                'warning': '⚠️ BABALA: May Expiration Date ang Trabaho Mo',
-                'hero-line1': 'Tigilan ang Pagbuo ng Pangarap ng Iba',
-                'hero-line2': 'Kontrolin ang AI Bago Ka Nito Kontrolin',
-                'hero-subtitle': 'Bawat araw na ipinagpapalit mo ang oras sa sahod, tinuturuan mo ang AI na pumalit sayo. Oras na para baguhin ang takbo.',
-                'stat-escaped': 'Nakatakas sa 9-5',
-                'stat-age': 'Average na Edad',
-                'stat-income': 'Average Buwanang Kita',
-                'stat-workday': 'Oras ng Trabaho Araw-araw',
-                'just-escaped': 'kaka-resign lang! 🎉'
+                'active-students': 'Active Students',
+                'limited-spots': 'LIMITED TIME OFFER - TATAAS ANG PRESYO SA',
+                'regular-price': 'Regular na Presyo: ₱55,664',
+                'today-price': 'Ngayon Lang: ₱27,832',
+                'faq1-q': 'Kailangan ko ba ng technical skills?',
+                'faq1-a': 'Hindi! Kung marunong kang mag-email, kaya mong gumamit ng AI para kumita. Ang aming step-by-step system ay para sa complete beginners.',
+                'faq2-q': 'Gaano kabilis ako magsisimulang kumita?',
+                'faq2-a': 'Karamihan ng students ay nagrereport ng first income nila within 7-14 days. May ilan na kumita ng first ₱5,600 nila within 48 hours.',
+                'faq3-q': 'Paano kung hindi gumana para sa akin?',
+                'faq3-a': 'May 30-day money-back guarantee kami. Kung walang results, ibabalik namin lahat. Zero risk.',
+                'faq4-q': 'Gaano katagal ang kailangan kong i-invest?',
+                'faq4-a': 'Karamihan ng successful students ay nagtatrabaho 2-4 hours per day. Ang AI tools ang gumagawa ng most ng heavy lifting para sa\'yo.'
             }
         };
 
@@ -1287,12 +1660,43 @@
 
         // Names for social proof
         const proofNames = {
-            en: ['Mike from Austin', 'Sarah from NYC', 'James from LA', 'Emma from Chicago', 'David from Miami', 'Lisa from Seattle'],
+            en: ['John from Texas', 'Sarah from California', 'Mike from Florida', 'Emma from NYC', 'David from Seattle', 'Lisa from Chicago'],
             ja: ['東京の田中さん', '大阪の鈴木さん', '京都の佐藤さん', '福岡の高橋さん', '名古屋の山田さん', '札幌の伊藤さん'],
             ko: ['서울의 김민수', '부산의 이지은', '대구의 박준호', '인천의 최서연', '광주의 정민호', '대전의 강수진'],
             'zh-tw': ['台北的陳先生', '高雄的林小姐', '台中的王先生', '新竹的張小姐', '桃園的李先生', '台南的黃小姐'],
-            'es-mx': ['Miguel de CDMX', 'María de Guadalajara', 'Carlos de Monterrey', 'Ana de Puebla', 'Luis de Tijuana', 'Sofia de Cancún'],
+            'es-mx': ['Juan de CDMX', 'María de Guadalajara', 'Carlos de Monterrey', 'Ana de Puebla', 'Luis de Tijuana', 'Sofia de Cancún'],
             tl: ['Juan from Manila', 'Maria from Cebu', 'Jose from Davao', 'Ana from QC', 'Pedro from Makati', 'Rosa from Pasig']
+        };
+
+        // AI Chat Responses
+        const aiChatResponses = {
+            en: {
+                'default': 'Great question! Most students start earning within 7-14 days using our proven system.',
+                'how much': 'Students average $5,000-$10,000/month. Top performers reach $50K+!',
+                'experience': 'No experience needed! If you can use email, you can do this.',
+                'time': 'Most students work 2-4 hours per day and see results within 2 weeks.',
+                'guarantee': 'Yes! 30-day money-back guarantee. If you don\'t see results, full refund.',
+                'price': 'Today\'s special price is $497 (regular $997). Price increases when timer hits zero!',
+                'start': 'Click any "Enroll Now" button to get instant access to all modules!'
+            },
+            ja: {
+                'default': '素晴らしい質問です！ほとんどの生徒は実証済みのシステムを使用して7〜14日以内に収益を上げ始めます。',
+                'how much': '生徒の平均は月75万〜150万円です。トップパフォーマーは750万円以上に達します！',
+                'experience': '経験は必要ありません！メールが使えれば、これができます。',
+                'time': 'ほとんどの生徒は1日2〜4時間働き、2週間以内に結果が出ます。',
+                'guarantee': 'はい！30日間の返金保証。結果が出なければ、全額返金します。',
+                'price': '今日の特別価格は74,550円（通常149,550円）です。タイマーがゼロになると価格が上がります！',
+                'start': '「今すぐ登録」ボタンをクリックして、すべてのモジュールに即座にアクセスしてください！'
+            },
+            ko: {
+                'default': '좋은 질문입니다! 대부분의 학생들은 입증된 시스템을 사용하여 7-14일 내에 수익을 올리기 시작합니다.',
+                'how much': '학생들은 평균적으로 월 650만원-1300만원을 벌고 있습니다. 최고 수익자는 6500만원 이상!',
+                'experience': '경험이 필요 없습니다! 이메일을 사용할 수 있다면 할 수 있습니다.',
+                'time': '대부분의 학생들은 하루 2-4시간 일하고 2주 내에 결과를 봅니다.',
+                'guarantee': '네! 30일 환불 보장. 결과가 없으면 전액 환불합니다.',
+                'price': '오늘 특별 가격은 646,100원(정가 1,292,200원)입니다. 타이머가 0이 되면 가격이 인상됩니다!',
+                'start': '"지금 등록" 버튼을 클릭하여 모든 모듈에 즉시 액세스하세요!'
+            }
         };
 
         let currentLang = 'en';
@@ -1316,36 +1720,104 @@
         // Create particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
+            const sizes = ['small', 'medium', 'large'];
+            const colors = ['purple', 'cyan', 'green'];
+            
+            for (let i = 0; i < 30; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'particle';
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.className = `particle particle-${size} particle-${color}`;
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (18 + Math.random() * 8) + 's';
                 particlesContainer.appendChild(particle);
             }
         }
 
-        // Job Replacement Counter
-        let jobsReplaced = 12847;
-        function updateJobsReplaced() {
-            jobsReplaced += Math.floor(Math.random() * 5) + 1;
-            document.getElementById('jobs-replaced-count').textContent = jobsReplaced.toLocaleString();
-        }
-        setInterval(updateJobsReplaced, 5000);
+        // Language switching
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentLang = this.dataset.lang;
+                updateLanguage();
+                updateCurrency();
+            });
+        });
 
-        // Freedom Counter
-        let freedomCount = 247;
-        function updateFreedomCount() {
-            if (Math.random() > 0.6) {
-                freedomCount += 1;
-                document.getElementById('freedom-count').textContent = freedomCount.toLocaleString();
-                
-                // Trigger social proof popup
-                showSocialProof();
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.innerHTML = translations[currentLang][key];
+                }
+            });
+            
+            // Update glitch effect data attributes
+            document.querySelectorAll('.glitch').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.setAttribute('data-text', translations[currentLang][key]);
+                }
+            });
+
+            // Update placeholder text
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    element.placeholder = translations[currentLang][key];
+                }
+            });
+        }
+
+        function updateCurrency() {
+            const config = currencyConfig[currentLang];
+            document.getElementById('currency-symbol').textContent = config.symbol;
+            updateIncomeCalculator();
+        }
+
+        // Income Calculator
+        const hoursSlider = document.getElementById('hours-slider');
+        const hoursDisplay = document.getElementById('hours-display');
+        const incomeValue = document.getElementById('income-value');
+
+        hoursSlider.addEventListener('input', updateIncomeCalculator);
+
+        function updateIncomeCalculator() {
+            const hours = hoursSlider.value;
+            hoursDisplay.textContent = hours;
+            
+            const config = currencyConfig[currentLang];
+            const baseIncome = hours * 2000;
+            const localIncome = Math.floor(baseIncome * config.multiplier);
+            
+            incomeValue.textContent = localIncome.toLocaleString();
+            
+            // Update calculator button amount
+            const calculatorAmount = document.getElementById('calculator-amount');
+            if (calculatorAmount) {
+                calculatorAmount.textContent = config.symbol + localIncome.toLocaleString();
+            }
+            
+            // Animate the number
+            incomeValue.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                incomeValue.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Student Counter (slowly increases to show growth)
+        function updateStudentCount() {
+            const current = parseInt(document.getElementById('student-count').textContent.replace(/,/g, ''));
+            // Only occasionally add a new student (more realistic)
+            if (Math.random() > 0.7) {
+                const newValue = current + 1;
+                document.getElementById('student-count').textContent = newValue.toLocaleString();
             }
         }
-        setInterval(updateFreedomCount, 30000);
+        setInterval(updateStudentCount, 30000); // Check every 30 seconds
 
         // Countdown Timer
         function updateCountdown() {
@@ -1363,6 +1835,7 @@
             document.getElementById('countdown').textContent = timeString;
         }
 
+
         // Social Proof Notifications
         function showSocialProof() {
             const popup = document.getElementById('social-proof');
@@ -1377,43 +1850,31 @@
             }, 5000);
         }
 
-        // Language switching
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentLang = this.dataset.lang;
-                updateLanguage();
-                updatePrices();
-            });
+        // Exit Intent Popup
+        let exitShown = false;
+        document.addEventListener('mouseout', (e) => {
+            if (e.clientY <= 0 && !exitShown) {
+                document.getElementById('email-popup').style.display = 'block';
+                exitShown = true;
+            }
         });
 
-        function updateLanguage() {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[currentLang] && translations[currentLang][key]) {
-                    element.innerHTML = translations[currentLang][key];
-                }
-            });
-        }
+        // Auto-scroll testimonials
+        const carousel = document.getElementById('testimonial-carousel');
+        let scrollAmount = 0;
 
-        function updatePrices() {
-            const config = currencyConfig[currentLang];
-            const symbol = config.symbol;
-            const multiplier = config.multiplier;
-            
-            // Update stat income
-            const statIncome = document.querySelector('.stat-number');
-            if (statIncome && statIncome.parentElement.querySelector('.stat-label').getAttribute('data-i18n') === 'stat-income') {
-                const baseAmount = 8400;
-                statIncome.textContent = symbol + (baseAmount * multiplier).toLocaleString();
+        function autoScrollTestimonials() {
+            scrollAmount += 1;
+            if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
+                scrollAmount = 0;
             }
+            carousel.scrollTo(scrollAmount, 0);
         }
 
         // PayPal Integration
         function initPayPal() {
             if (typeof paypal === 'undefined') {
-                console.log('PayPal SDK not loaded. Please add your PayPal Client ID in config.js file.');
+                console.log('PayPal SDK not loaded. Replace YOUR-PAYPAL-CLIENT-ID with actual client ID.');
                 return;
             }
 
@@ -1421,7 +1882,9 @@
             const buttonContainers = [
                 'paypal-button-container',
                 'paypal-button-container-2',
-                'paypal-button-container-3'
+                'paypal-button-container-3',
+                'paypal-button-container-4',
+                'paypal-button-container-5'
             ];
 
             buttonContainers.forEach(containerId => {
@@ -1438,7 +1901,7 @@
                     onApprove: function(data, actions) {
                         return actions.order.capture().then(function(details) {
                             // Redirect to course access page
-                            window.location.href = window.AIWealthConfig.course.accessUrl + '?order=' + details.id;
+                            window.location.href = 'course-access.html?order=' + details.id;
                         });
                     }
                 }).render('#' + containerId);
@@ -1448,22 +1911,20 @@
         // Initialize
         createParticles();
         updateCountdown();
+        updateIncomeCalculator();
         setInterval(updateCountdown, 1000);
+        setInterval(autoScrollTestimonials, 50);
         
-        // Show social proof every 20-40 seconds
+        // Show social proof every 10-20 seconds
         setInterval(() => {
             if (Math.random() > 0.5) {
                 showSocialProof();
             }
-        }, 20000 + Math.random() * 20000);
+        }, 10000 + Math.random() * 10000);
         
-        // First notification after 5 seconds
-        setTimeout(showSocialProof, 5000);
+        // First notification after 3 seconds
+        setTimeout(showSocialProof, 3000);
 
-        // Initialize PayPal when ready
-        window.addEventListener('load', () => {
-            setTimeout(initPayPal, 1000);
-        });
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1472,6 +1933,63 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+    
+    <!-- Stripe Integration -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="config.js"></script>
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe(window.AIWealthConfig.stripe.publishableKey);
+        
+        // Function to handle Stripe checkout
+        async function handleStripeCheckout(buttonId) {
+            try {
+                console.log('Starting Stripe checkout...');
+                console.log('Price ID:', window.AIWealthConfig.stripe.priceId);
+                console.log('Button clicked:', buttonId);
+                
+                // Create checkout session
+                const response = await stripe.redirectToCheckout({
+                    lineItems: [{
+                        price: window.AIWealthConfig.stripe.priceId,
+                        quantity: 1
+                    }],
+                    mode: window.AIWealthConfig.stripe.mode,
+                    successUrl: window.AIWealthConfig.stripe.successUrl,
+                    cancelUrl: window.AIWealthConfig.stripe.cancelUrl,
+                    clientReferenceId: buttonId // Track which button was clicked
+                });
+                
+                if (response.error) {
+                    console.error('Stripe error:', response.error);
+                    alert('Payment error: ' + response.error.message);
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Unable to process payment. Please check the browser console for details.');
+            }
+        }
+        
+        // Attach click handlers to all Stripe buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // All Stripe checkout buttons
+            const stripeButtons = [
+                'stripe-checkout-hero',
+                'stripe-checkout-testimonials',
+                'stripe-checkout-calculator',
+                'stripe-checkout-course',
+                'stripe-checkout-vault',
+                'stripe-checkout-final'
+            ];
+            
+            stripeButtons.forEach(buttonId => {
+                const button = document.getElementById(buttonId);
+                if (button) {
+                    button.addEventListener('click', () => handleStripeCheckout(buttonId));
                 }
             });
         });

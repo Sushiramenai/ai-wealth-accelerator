@@ -2,17 +2,21 @@
 // This file stores important configuration that shouldn't be hardcoded in HTML
 
 const CONFIG = {
-    // PayPal Configuration
-    paypal: {
-        clientId: 'AbHykuH824RZ6LTfXEd2CvPgKS44eJt7YbjLaSWzBj6RpzjDgn0hStYIQqD0wORU4GvJHS0sOavspuLz', // PayPal Live Client ID
-        currency: 'USD',
-        productPrice: 497
+    // Stripe Configuration
+    stripe: {
+        publishableKey: 'pk_live_51Rht5YDldn9foN4AENSW6qDrXwYNLPA858wEF6kVZEYYYmyjFlfoHDPEdM5Ru6zXV0Et3bricf5Sbaqklpnnewyl00CvBDdJzV',
+        priceId: 'price_1Ri1jzDldn9foN4AZaSFBbOc', // AI Fortune Academy - $497
+        successUrl: window.location.origin + '/course-access-enhanced.html?session_id={CHECKOUT_SESSION_ID}',
+        cancelUrl: window.location.origin + '/index.html',
+        mode: 'payment' // or 'subscription' if you want recurring payments
     },
     
     // Course Configuration
     course: {
         accessUrl: 'course-access-enhanced.html',
-        supportEmail: 'support@aiwealthaccelerator.com'
+        supportEmail: 'support@aiwealthaccelerator.com',
+        productName: 'AI Fortune Academy',
+        productPrice: 497
     },
     
     // Timer Configuration
