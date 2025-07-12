@@ -1,0 +1,64 @@
+ZAPIER EMAIL TEMPLATE - COPY & PASTE READY
+
+=== EMAIL SETTINGS ===
+
+To: {{customer_email}} 
+(This will be automatically filled from Stripe)
+
+From Name: AI Fortune Academy
+
+Subject: Welcome to AI Fortune Academy! 🚀 (Access Inside)
+
+=== EMAIL BODY ===
+
+Hi {{customer_name}},
+
+BOOM! You did it! 💥
+
+You just made the decision that's going to change everything.
+
+While others are complaining about AI taking jobs, you're about to use it to build wealth.
+
+Smart move.
+
+Here's your instant access to AI Fortune Academy:
+
+👉 ACCESS YOUR COURSE NOW: https://sushiramenai.github.io/ai-wealth-accelerator/course-access-enhanced.html?order={{payment_intent}}
+
+Save this email. Bookmark that link. You'll need it.
+
+Quick Start Guide (Do This NOW):
+1. Click the link above
+2. Watch the 5-minute welcome video
+3. Dive into Module 1, Lesson 1
+4. Join our private community
+5. Introduce yourself (we're friendly!)
+
+Fair warning: Students who start within 24 hours are 3x more likely to hit $10K/month.
+
+Just saying. 😏
+
+Questions? Just reply to this email. I personally read every message.
+
+Let's build your empire!
+
+[Your Name]
+Founder, AI Fortune Academy
+
+P.S. Seriously, go start Module 1 right now. Future you will thank present you.
+
+=== ZAPIER VARIABLES TO MAP ===
+
+{{customer_email}} → Stripe: Customer Email
+{{customer_name}} → Stripe: Customer Name  
+{{payment_intent}} → Stripe: Payment Intent ID
+
+=== FOLLOW-UP EMAILS ===
+
+Set up additional steps in Zapier with delays:
+- 24 hours: Send Email 2 (check-in)
+- 3 days: Send Email 3 (success story)
+- 7 days: Send Email 4 (progress check)
+- 14 days: Send Email 5 (transformation story)
+- 30 days: Send Email 6 (certificate reminder)
+- 60 days: Send Email 7 (challenge)

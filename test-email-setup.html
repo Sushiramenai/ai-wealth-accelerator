@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Email Setup - AI Fortune Academy</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #00ff88;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #00ff88;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #00dd77;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .checklist {
+            margin: 20px 0;
+        }
+        .checklist li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Email Setup Testing</h1>
+        
+        <div class="test-section">
+            <h2>📋 Pre-Test Checklist</h2>
+            <ul class="checklist">
+                <li>☐ GitHub Pages is live at: <a href="https://sushiramenai.github.io/ai-wealth-accelerator/" target="_blank">https://sushiramenai.github.io/ai-wealth-accelerator/</a></li>
+                <li>☐ Stripe account is in LIVE mode (not test mode)</li>
+                <li>☐ Email automation is configured (Gmail/Zapier/Other)</li>
+                <li>☐ Course access page exists and loads properly</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 Test 1: Email Configuration</h2>
+            <p>Send a test email to verify your setup:</p>
+            
+            <h3>Gmail Auto-Responder Test:</h3>
+            <ol>
+                <li>Send an email to your course Gmail: <code>aiwealthcourse@gmail.com</code></li>
+                <li>Subject: "Test Purchase"</li>
+                <li>You should receive auto-response within 1 minute</li>
+            </ol>
+            
+            <h3>Zapier Test:</h3>
+            <button class="button" onclick="testZapier()">Test Zapier Webhook</button>
+            <div id="zapier-status"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>💳 Test 2: Stripe Test Purchase</h2>
+            <p>Use Stripe TEST mode for this:</p>
+            <ol>
+                <li>Switch to TEST mode in Stripe Dashboard</li>
+                <li>Update <code>config.js</code> with TEST keys temporarily</li>
+                <li>Make a test purchase using card: <code>4242 4242 4242 4242</code></li>
+                <li>Verify email is sent</li>
+                <li>Switch back to LIVE mode</li>
+            </ol>
+            <a href="index.html" class="button" target="_blank">Go to Checkout Page</a>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 Test 3: Live Purchase Test</h2>
+            <p><strong>⚠️ This will charge your card $497!</strong></p>
+            <p>Only do this when ready to verify everything works:</p>
+            <ol>
+                <li>Make a real purchase</li>
+                <li>Verify email arrives within 2 minutes</li>
+                <li>Test course access link</li>
+                <li>Request refund in Stripe Dashboard if needed</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ Post-Launch Monitoring</h2>
+            <ul>
+                <li>Check Stripe Dashboard for successful payments</li>
+                <li>Monitor email delivery (check spam folders)</li>
+                <li>Test course access link regularly</li>
+                <li>Keep track of customer feedback</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🆘 Troubleshooting</h2>
+            <h3>Email not sending?</h3>
+            <ul>
+                <li>Check Stripe email notifications are enabled</li>
+                <li>Verify Gmail vacation responder is ON</li>
+                <li>Check Zapier task history for errors</li>
+                <li>Ensure customer email is added to contacts (Gmail)</li>
+            </ul>
+            
+            <h3>Course link not working?</h3>
+            <ul>
+                <li>Verify GitHub Pages is enabled and live</li>
+                <li>Check that course-access-enhanced.html exists</li>
+                <li>Test in incognito mode</li>
+                <li>Clear browser cache</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function testZapier() {
+            const status = document.getElementById('zapier-status');
+            status.innerHTML = '<div class="status">⏳ Sending test webhook...</div>';
+            
+            // Simulate webhook test
+            setTimeout(() => {
+                status.innerHTML = `
+                    <div class="status success">
+                        ✅ Test webhook sent! Check your Zapier task history.
+                    </div>
+                    <p>If using Zapier, go to your Zap and check the task history to see if it was triggered.</p>
+                `;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
